@@ -113,10 +113,10 @@ function get_classifica() {
 		success: function (response) {
 			var count = 0;
 			var html = '<h1 class="textSide">Leaderboard</h1>'
-			html += '<table><thead><tr><th>Posizione</th><th>Username</th><th>Punteggio</th></tr></thead><tbody>';
+			html += '<table><thead><tr><th>Rank</th><th>Username</th><th>Time</th></tr></thead><tbody>';
 			$.each(response, function (i, item) {
 				count = count + 1;
-				html += '<tr><td>' + (i + 1) + '</td><td>' + item.username + '</td><td>' + item.punteggio + '</td></tr>';
+				html += '<tr><td>' + (i + 1) + '</td><td>' + item.username + '</td><td>' + item.punteggio + 's</td></tr>';
 			});
 			if (count == 0 ) {
 				html += '<tr><td></td><td>(No Scores yet)</td><td></td></tr>';
