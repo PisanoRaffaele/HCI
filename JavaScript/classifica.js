@@ -14,7 +14,7 @@ function get_classifica(id, revers, game) {
 				html += '<tr><td>' + (i + 1) + '</td><td>' + item.username + '</td><td>' + item.punteggio + '</td></tr>';
 			});
 			if (count == 0 ) {
-				html += '<tr><td>1</td><td>(No Scores yet)</td><td>0</td></tr>';
+				html += '<tr><td></td><td>(No Scores yet)</td><td></td></tr>';
 			}
 			html += '</tbody></table>';
 			$(id).html(html);

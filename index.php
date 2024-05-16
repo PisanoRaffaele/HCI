@@ -6,6 +6,7 @@ include 'head.php';
 ?>
 
 <body>
+    <div class="alert" style="display: none;"></div>
     <main>
         <?php
         include "html/header.html";

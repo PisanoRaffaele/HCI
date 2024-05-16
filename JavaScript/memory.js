@@ -1,12 +1,12 @@
 const images = [
-	'../assets/memory/1.png',
-	'../assets/memory/2.png',
-	'../assets/memory/3.png',
-	'../assets/memory/4.png',
-	'../assets/memory/5.png',
-	'../assets/memory/6.png',
-	'../assets/memory/7.png',
-	'../assets/memory/8.png',
+	'assets/memory/1.png',
+	'assets/memory/2.png',
+	'assets/memory/3.png',
+	'assets/memory/4.png',
+	'assets/memory/5.png',
+	'assets/memory/6.png',
+	'assets/memory/7.png',
+	'assets/memory/8.png',
 ];
 
 let firstCard = null;
@@ -24,7 +24,6 @@ function generateRandomNumber() {
 	let randomNumber = 0;
 
 	if (generatedNumbers.length === 16) {
-		console.log("Errore: non ci sono più numeri da generare");
 		return -1;
 	}
 
@@ -182,7 +181,7 @@ function get_classifica() {
 				html += '<tr><td>' + (i + 1) + '</td><td>' + item.username + '</td><td>' + item.punteggio + '</td></tr>';
 			});
 			if (count == 0 ) {
-				html += '<tr><td>1</td><td>(No Scores yet)</td><td>0</td></tr>';
+				html += '<tr><td></td><td>(No Scores yet)</td><td></td></tr>';
 			}
 			html += '</tbody></table>';
 			$('.classifica').html(html);

@@ -1,6 +1,6 @@
 $(() => {
 	var score = 0;
-	var time = 10;
+	var time = 1;
 	var countdown;
 	var gameStarted = false;
 
@@ -24,6 +24,30 @@ $(() => {
 				clearInterval(countdown);
 				$('#dot').unbind();
 				setTimeout(function () {
+					html = '<h1>Game Over!</h1><p>Your score is: ' + score + '</p><button id="reset-alert-btn">Play Again</button>';
+					$('.alert').addClass('show');
+					$('.alert').html(html);
+					$('main').addClass('blur');
+					$('footer').addClass('blur');
+
+					$('#reset-alert-btn').click(function () {
+						$('.alert').removeClass('show');
+						$('.alert').html('');
+						$('main').removeClass('blur');
+						$('footer').removeClass('blur');
+						score = 0;
+						time = 10;
+						$('#score').text(score);
+						$('#time').text(time);
+						clearInterval(countdown);
+						$('#dot').unbind();
+						gameStarted = false;
+						$('#dot').click(function () {
+							if (!gameStarted) {
+								startGame();
+							}
+						});
+					});
 					aggiornaClassifica();
 				}, 100);
 				gameStarted = false;
@@ -77,7 +101,7 @@ $(() => {
 					html += '<tr><td>' + (i + 1) + '</td><td>' + item.username + '</td><td>' + item.punteggio + '</td></tr>';
 				});
 				if (count == 0 ) {
-					html += '<tr><td>1</td><td>(No Scores yet)</td><td>0</td></tr>';
+					html += '<tr><td></td><td>(No Scores yet)</td><td></td></tr>';
 				}
 				html += '</tbody></table>';
 				$('.classifica').html(html);
@@ -109,3 +133,12 @@ $(() => {
 
 
 });
+
+
+/************************* Alert *************************/
+
+function showAlert(html) {
+
+}
+
+

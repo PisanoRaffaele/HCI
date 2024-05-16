@@ -18,6 +18,20 @@ footer {
 	background-color: var(--o);
 }
 
+p {
+	font-size: clamp(22px, 2vw, 32px) !important;
+	margin: 0 !important;
+}
+
+th {
+	font-size: clamp(22px, 2vw, 32px) !important;
+}
+
+td {
+	font-size: clamp(22px, 2vw, 32px) !important;
+}
+
+
 .footer-list {
 	display: flex;
 	list-style: none;
@@ -54,6 +68,63 @@ footer {
 
 .footer-link:hover i.fa-linkedin-in {
 	color: #0077b5;
+}
+
+/******************** ALERT ************************/
+
+.alert {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%) !important;
+	background-color: var(--o);
+	border: 2px solid white;
+	color: white;
+	padding: 14px 20px;
+	margin: 10px 0;
+	border-radius: 18px;
+	z-index: 99999;
+}
+.alert p{
+	margin: 0;
+	font-size: clamp(22px, 2vw, 32px);
+}
+
+.alert.show {
+	display: flex !important;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#reset-alert-btn {
+	margin: 32px;
+	font-size: clamp(26px, 2.3vw, 36px);
+	font-weight: bold;
+	width: 170px;
+	color: var(--blue);
+	border: 3px solid var(--yellow);
+	border-radius: 18px;
+	background-color: var(--yellow);
+}
+
+#reset-alert-btn:focus {
+	outline: none !important;
+	box-shadow: none;
+}
+
+#reset-alert-btn:hover {
+	background-color: #fff273;
+}
+
+main.blur {
+	filter: blur(3px);
+	pointer-events: none;
+}
+
+footer.blur {
+	filter: blur(3px);
+	pointer-events: none;
 }
 
 @media screen and (max-width: 768px) {
