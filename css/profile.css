@@ -1,0 +1,162 @@
+/****************************** Global Data & Variable ******************************/
+
+:root {
+    --blue-opaco: rgba(0, 0, 31, 0.7);
+    --blue: #00001f;
+    --yellow: #ffec37;
+    --height-header: 80px;
+    --o: #1e0742;
+}
+
+body {
+    background-color: var(--blue);
+    font-family: Arial;
+    background: rgb(99, 39, 120);
+}
+
+
+/****************************** TEXT ******************************/
+
+.textCenter {
+	font-size: 55px;
+	font-weight: bold;
+	background-image: url("https://assets.website-files.com/61c070585317d242d3a59789/61c070585317d282fba597e2_user.jpeg");
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+	background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: repeat;
+    line-height: 120%;
+    letter-spacing: 0.014em;
+    margin: 20px auto;
+}
+
+.textSide {
+	font-size: 40px;
+	font-weight: bold;
+	background-image: url("https://assets.website-files.com/61c070585317d242d3a59789/61c070585317d282fba597e2_user.jpeg");
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+	background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: repeat;
+    line-height: 120%;
+    letter-spacing: 0.014em;
+    margin: 15px auto;
+}
+
+
+/****************************** Sfondo ******************************/
+
+.top-bg {
+    position: relative;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: auto;
+    min-height: 100vh;
+    background-image: url("https://assets.website-files.com/61c070585317d242d3a59789/61c5ada3c5cb112cfd9942d2_Header%20Shape%20-%20Tirangle.svg"),
+    url("https://assets.website-files.com/61c070585317d242d3a59789/61c5ada3a561fd62da066d54_Header%20Shape%20-%20Circle.svg"),
+    url("https://assets.website-files.com/61c070585317d242d3a59789/61c5ada376ce2f33cb89a827_Header%20Shape%20-%20Cross.svg"),
+    url("https://assets.website-files.com/61c070585317d242d3a59789/61c5ada30c499cf71d711619_Header%20Shape%20-%20Stripes.svg"),
+    url("https://assets.website-files.com/61c070585317d242d3a59789/61c5ada38be2557dbd30de9e_Header%20Shape%20-%20Background.svg");
+    background-position: -31px 50%, 90% 80%, 98% 50%, 30% -35%, 50% 0%;
+    background-size: auto, auto, auto, 224px, auto 60vh;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat-x;
+}
+
+
+/****************************** Profile Data ******************************/
+
+#container {
+	padding-top : 160px !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+    /* orientamento del flex */
+	flex-direction: column;
+
+}
+
+.text-availabilty.error {
+    color: red;
+}
+
+.text-availabilty.available {
+    color: green;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.save-button {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.setting-side {
+    width: 100%;
+}
+
+.setting-side:hover {
+    cursor: pointer;
+}
+
+.row span {
+    font-size: clamp(22px, 2.2vw, 26px);
+}
+
+#logout-text{
+    font-size: clamp(20px, 2.2vw, 26px);
+}
+
+.row label {
+    font-size: clamp(16px, 1.8vw, 20px);
+    margin-bottom: 3px !important;
+    margin-top: 8px !important;
+    margin-left: 8px !important;
+}
+
+
+@media screen and (max-width: 792px) {
+    .textCenter {
+        display: none;
+    }
+
+    #profile-container {
+        margin-top: 80px !important;
+    }
+
+    #container {
+        padding-top : 0px !important;
+    }
+}

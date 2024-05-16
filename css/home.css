@@ -1,0 +1,228 @@
+/****************************** Global Data & Variable ******************************/
+:root {
+    --blue-opaco: rgba(0, 0, 31, 0.7);
+    --blue: #00001f;
+    --yellow: #ffec37;
+    --height-header: 80px;
+    --o: #1e0742;
+}
+
+body {
+    background-color: var(--blue);
+    font-family: Arial;
+}
+
+/****************************** Video Style ******************************/
+/* Video Container Style */
+.video-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.video-container img {
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+}
+
+.video-container video {
+    width: 100%;
+}
+
+/****************************** Title & Description Game ******************************/
+
+.game-section {
+    display: block;
+    place-content: center;
+    padding: 60px 20px;
+    margin: auto 40px;
+}
+
+.content-game {
+    max-width: 1224px;
+    text-align: center;
+    margin: auto;
+}
+
+.h1-colored {
+    background-image: url("https://assets.website-files.com/61c070585317d242d3a59789/61c070585317d282fba597e2_user.jpeg");
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-size: clamp(40px, 10vw , 92px);
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: repeat;
+    line-height: 120%;
+    letter-spacing: 0.014em;
+    margin: 20px auto;
+}
+
+.max-630 {
+    max-width: 630px;
+    margin: 16px auto;
+    font-size: clamp(8px, 5vw, 26px);
+    color: #fff;
+    font-weight: 600;
+    line-height: clamp(20px, 6vw, 33px);
+}
+
+/****************************** Game Presentation ******************************/
+
+.game-position {
+    display: block;
+}
+
+.game-list {
+    display: grid;
+    margin-top: clamp(40px, 10vw, 80px);
+    grid-auto-columns: 1fr;
+    grid-column-gap: 26px;
+    grid-row-gap: 26px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    -ms-grid-rows: auto auto;
+    grid-template-rows: auto auto;
+}
+
+.card {
+    background-image: url("https://assets.website-files.com/61c070585317d242d3a59789/61c070585317d2efa3a59843_back%20image-cards%20Background-3.png");
+    background-color: rgba(28, 1, 50, 0.892);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.card-text {
+    font-size: clamp(16px, 2.2vw, 22px);
+}
+
+.title-container h4{
+    font-weight: bold !important;
+    font-size: clamp(18px, 2.3vw, 28px) !important;
+}
+
+.jumping-foto {
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    width: 100%;
+    height: auto;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    margin: clamp(18px, 5vw, 30px) 0;
+}
+
+.logo-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.description-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: clamp(100px, 16vw, 150px);
+    width: 100%;
+    padding: 10px;
+}
+
+.play-button {
+    opacity: 0;
+    position: absolute;
+    display: inline-block;
+    padding: 18px 48px 16px;
+    margin-top: 40px;
+    border-radius: 99px;
+    background-color: var(--yellow);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    color: #00001f;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-20px);
+    border: 3px solid var(--yellow);
+}
+
+.card:hover .card-text {
+    opacity: 0;
+    transition: opacity 0.1s ease-in, transform 0.1s ease-in;
+}
+
+.card:hover .play-button {
+    opacity: 1;
+    transform: translateY(-25px);
+}
+
+.card:hover .jumping-foto {
+    opacity: 1;
+    transform: translateY(-70px);
+}
+
+.play-button:hover {
+    background-color: #fff273;
+    color: black;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1191px) {
+    .game-list {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .video-container {
+        transition: 0;
+        margin-top: var(--height-header);
+    }
+    .video-container img {
+        transform: scale(1.5);
+    }
+    .video-container video {
+        transform: scale(1.5);
+    }
+
+    .game-section {
+        padding: 60px 20px;
+        margin: auto 10px;
+    }
+
+}
+
+@media screen and (max-width: 660px) {
+    .game-list {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .max-630 {
+        display: none;
+    }
+}

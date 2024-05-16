@@ -1,0 +1,425 @@
+/****************************** Global Data & Variable ******************************/
+:root {
+    --blue-opaco: rgba(0, 0, 31, 0.7);
+    --blue: #00001f;
+    --yellow: #ffec37;
+    --height-header: 80px;
+    --o: #1e0742;
+}
+
+body {
+    background-color: var(--blue);
+    font-family: Arial;
+}
+/****************************** Navbar ******************************/
+
+.logo {
+    border-radius: 25px !important;
+    background-color: var(--blue-opaco);
+    padding: 12px;
+    width: auto;
+}
+
+#logoimg {
+    /* la clamp setta la dimensione massima e minima alla larghezza dell immagine
+        1° parametro: dimensione minima
+        2° parametro: dimensione preferita
+        3° parametro: dimensione massima
+        la width è settata al 30% della larghezza della pagina
+    */
+    width: clamp(150px, 32vw, 240px);
+    height: auto;
+}
+
+#hamburger {
+    outline: none;
+}
+
+.header {
+    position: fixed;
+    align-items: center;
+    background-color: transparent;
+    z-index: 999;
+    top: 50px;
+    padding-inline: 25px;
+    width: 100%;
+}
+
+.navbar {
+    border-radius: 25px !important;
+    background-color: var(--blue-opaco);
+    backdrop-filter: blur(3px);
+    font-size: 1.3rem;
+}
+
+.navbar-nav a {
+    color: #ffffff;
+}
+
+.navbar-nav a:hover {
+    background-color: rgba(255, 255, 255, 0) !important;
+    color: var(--yellow);
+}
+
+.header-link-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jumping-foto2 {
+    position: absolute;
+    top: 0;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.2s ease-in, transform 0.2s ease-in;
+    width: 40px;
+    height: 20px;
+}
+
+.header-link-container:hover .jumping-foto2 {
+    opacity: 1;
+    transform: translateY(-10px);
+}
+
+#search-btn2{
+    padding-left: .75rem !important;
+}
+
+
+/****************************** Toggle Button ******************************/
+
+/* Toggle Button Responsive Navbar */
+.animated-togglebutton {
+    width: 30px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.animated-togglebutton span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transition: .25s ease-in-out;
+    -moz-transition: .25s ease-in-out;
+    -o-transition: .25s ease-in-out;
+    transition: .25s ease-in-out;
+}
+
+.animated-togglebutton span {
+    background: #e3f2fd;
+}
+
+.animated-togglebutton span:nth-child(1) {
+    top: 0px;
+}
+
+.animated-togglebutton span:nth-child(2),
+.animated-togglebutton span:nth-child(3) {
+    top: 10px;
+}
+
+.animated-togglebutton span:nth-child(4) {
+    top: 20px;
+}
+
+.animated-togglebutton.open span:nth-child(1) {
+    top: 11px;
+    width: 0%;
+    left: 50%;
+}
+
+.animated-togglebutton.open span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.animated-togglebutton.open span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.animated-togglebutton.open span:nth-child(4) {
+    top: 11px;
+    width: 0%;
+    left: 50%;
+}
+
+/****************************** Dropdown Menu ******************************/
+
+.dropdown-nav-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--blue-opaco);
+    z-index: 998;
+    visibility: hidden;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform: translateY(-100%);
+    backdrop-filter: blur(7px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.dropdown-nav-container.show {
+    opacity: 1;
+    z-index: 998;
+    visibility: visible;
+    transform: translateY(0%);
+    padding-top: 100px;
+    position: fixed;
+}
+
+.dropdown-nav-container.show a {
+    animation: appear 0.6s both;
+}
+
+/* keyframes crea una animazione personalizzata */
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.dropdown-separator {
+    width: 70%;
+    height: 1px;
+    margin: 32px auto;
+    padding: 0px;
+    background-color: rgba(90, 90, 91, 0.8);
+}
+
+/****************************** Search Bar ******************************/
+
+#search-btn.show {
+    visibility: hidden;
+}
+
+.dropdown-search-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--blue-opaco);
+    z-index: 99999;
+    visibility: hidden;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform: translateY(-100%);
+    backdrop-filter: blur(7px);
+    transition: transform 0.3s;
+    padding: 40px;
+}
+
+.dropdown-search-container.show {
+    z-index: 998;
+    visibility: visible;
+    transform: translateY(0%);
+    overflow: auto;
+    background-color: rgba(0, 0, 31, 0.9);
+    position: fixed;
+}
+
+.dropdown-search-container.show a {
+    opacity: 0;
+    /* forwards mantiene l'ultimo stato del keyframe */
+    animation: fadeIn 0.2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+.fa-search {
+    color: #fff;
+}
+
+.fa-search:hover {
+    color: var(--yellow);
+    cursor: pointer;
+}
+
+/****************************** Search Bar Game Input ******************************/
+
+.close-search {
+    margin-right: 20px;
+    padding-left: 20px;
+}
+
+.search-container {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.search-input {
+    width: 100%;
+    margin-bottom: 0px;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-size: clamp(20px, 5vw, 54px);
+    font-weight: 700;
+    letter-spacing: 0.012em;
+    outline: none;
+}
+
+.dropdown-separator-search-input {
+    width: 100%;
+    height: 1px;
+    margin-bottom: 20px;
+    padding: 0px;
+    background-color: var(--yellow);
+}
+
+.dropdown-separator-search {
+    width: 80%;
+    height: 1px;
+    margin: 32px auto;
+    padding: 0px;
+    background-color: rgba(90, 90, 91, 0.8);
+}
+
+/****************************** Search Game Result ******************************/
+
+.search-game-img {
+    width: clamp(62px, 8vw, 92px);
+    height: clamp(58px, 9vw, 72px);
+    margin-right: clamp(10px, 5vw, 50px);
+    flex: 0 0 auto;
+    border: 4px solid #23223e;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-game-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.dropdown-game-container {
+    display: flex;
+    align-items: center;
+    padding-left: clamp(0px, 1vw, 50px);
+    width: 100%;
+    height: auto;
+}
+
+.search-game-link {
+    width: 80%;
+    text-decoration: none;
+}
+
+.search-game-title {
+    width: 100%;
+    color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    font-size: clamp(20px, 2vw, 34px);
+}
+
+.search-game-description {
+    width: 100%;
+    color: #8a8a9c;
+    text-align: left;
+    font-size: clamp(15px, 2vw, 24px);
+}
+
+.search-game-text {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/****************************** Responsive ******************************/
+
+@media screen and (max-width: 992px) {
+    .header {
+        top: 0px;
+        height: var(--height-header) !important;
+        background-color: var(--blue);
+        padding-inline: 10px;
+    }
+
+    #mynav {
+        padding: 0;
+    }
+
+    .video-container {
+        transition: 0;
+        margin-top: var(--height-header);
+    }
+
+    .animated-togglebutton.open span {
+        background-color: var(--yellow);
+    }
+
+    .dropdown-wrapp {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .dropdown-link {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        flex: 1;
+        font-size: 28px;
+        line-height: 33px;
+        font-weight: 700;
+        text-align: center;
+        color: #fff;
+    }
+
+    .dropdown-link:hover {
+        color: var(--yellow);
+    }
+
+}
+
+@media screen and (max-width: 601px) {
+    .header {
+        padding-inline: 4px;
+    }
+
+    .close-search {
+        margin-right: 0px;
+    }
+
+}
+
+@media screen and (max-width: 301px) {
+
+    .search-game-link {
+        flex-direction: column;
+    }
+}

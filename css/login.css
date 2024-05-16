@@ -1,0 +1,219 @@
+:root {
+    --blue-opaco: rgba(0, 0, 31, 0.7);
+    --blue: #00001f;
+    --yellow: #ffec37;
+    --height-header: 80px;
+    --o: #1e0742;
+}
+
+main {
+    background-image: url("https://assets.website-files.com/61c070585317d242d3a59789/61c5ada3c5cb112cfd9942d2_Header%20Shape%20-%20Tirangle.svg"),
+    url("https://assets.website-files.com/61c070585317d242d3a59789/61c5ada3a561fd62da066d54_Header%20Shape%20-%20Circle.svg"),
+    url("https://assets.website-files.com/61c070585317d242d3a59789/61c5ada376ce2f33cb89a827_Header%20Shape%20-%20Cross.svg"),
+    url("https://assets.website-files.com/61c070585317d242d3a59789/61c5ada30c499cf71d711619_Header%20Shape%20-%20Stripes.svg"),
+    url("https://assets.website-files.com/61c070585317d242d3a59789/61c5ada38be2557dbd30de9e_Header%20Shape%20-%20Background.svg");
+    background-position: -31px 50%, 90% 80%, 98% 50%, 30% -35%, 50% 0%;
+    background-size: auto, auto, auto, 224px, auto 60vh;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat-x;
+}
+
+#password.error,
+#username_email.error {
+    border: 2.5px solid red;
+    box-shadow: 0 0 3px red;
+}
+
+.text-availabilty{
+	font-size: clamp(15px, 2vw, 20px);
+}
+
+.text-availabilty.error {
+    color: red;
+}
+
+.text-availabilty.available {
+    color: green;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 700;
+	src: url("../fonts/montserrat/Montserrat-Bold.ttf");
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+figure {
+	margin: 0;
+}
+
+p {
+	margin-bottom: 0px;
+	font-size: 15px;
+	color: #777;
+}
+
+h2 {
+	line-height: 1.66;
+	margin: 0;
+	padding: 0;
+	font-weight: 900;
+	font-size: 24px;
+	text-transform: uppercase;
+	text-align: center;
+	margin-bottom: 40px;
+    background-image: url("https://assets.website-files.com/61c070585317d242d3a59789/61c070585317d282fba597e2_user.jpeg");
+    background-position: center;
+    background-repeat: repeat;
+	background-size: cover;
+    background-clip: text;
+	/* clip serve a far si che lo sfondo non vada oltre il testo */
+	-moz-background-clip: text;
+	-webkit-background-clip: text;
+    color: transparent;
+}
+
+
+.login-body {
+	font-size: 14px;
+	line-height: 1.8;
+	color: #222;
+	font-weight: 400;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	padding: 215px 0 115px 0;
+
+}
+
+.container {
+	width: 660px;
+	position: relative;
+	margin: 0 auto;
+    color: #fff;
+}
+
+.position-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.signin-content {
+	background: #fff;
+	background: var(--blue-opaco);
+	padding: 50px 85px;
+    border-radius: 30px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+.form-input {
+	width: 100%;
+	border: 1px solid #ebebeb;
+	border-radius: 5px;
+	padding: 17px 20px;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.form-submit {
+	width: 100%;
+	border-radius: 5px;
+	padding: 17px 20px;
+	font-size: 14px;
+	font-weight: 700;
+	text-transform: uppercase;
+	border: none;
+	color: var(--blue);
+	border: 3px solid var(--yellow);
+	border-radius: 35px;
+	background-color: var(--yellow);
+    background-position: center;
+    background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.registerhere {
+	color: #fff;
+	font-weight: 500;
+	text-align: center;
+	margin-top: 60px;
+	margin-bottom: 5px;
+}
+
+.registerhere-link {
+	font-weight: 700;
+	color: var(--yellow);
+}
+
+.field-icon {
+	float: right;
+	margin-right: 17px;
+	margin-top: -40px;
+	position: relative;
+	z-index: 2;
+	color: #555;
+}
+
+.signup {
+	margin-top: 60px;
+}
+
+@media screen and (max-width: 768px) {
+	.container {
+		width: calc(100% - 40px);
+		max-width: 100%;
+	}
+
+	.signup {
+		margin-top: 40px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+
+	.signup {
+		margin-top: 20px;
+	}
+
+	.signin-content {
+		padding: 30px 25px;
+	}
+
+	.registerhere {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.form-input {
+		padding: 10px 20px;
+	}
+
+	.field-icon {
+		margin-top: -35px;
+	}
+
+	#form-group-submit {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.form-submit {
+		padding: 12px 16px;
+		width: 80%;
+	}
+
+	.form-group {
+		margin-bottom: 10px;
+	}
+}
+
