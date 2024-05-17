@@ -36,7 +36,7 @@ body.light-mode .about-footnote {
 
 /****************************** TEXT ******************************/
 .textCenter {
-	font-size: 55px;
+	font-size: clamp(42px, 3.5vw , 64px);
 	font-weight: bold;
 	background-image: url("https://assets.website-files.com/61c070585317d242d3a59789/61c070585317d282fba597e2_user.jpeg");
     -webkit-text-fill-color: transparent;
@@ -51,7 +51,7 @@ body.light-mode .about-footnote {
 }
 
 .textSide {
-	font-size: 40px;
+	font-size: clamp(30px, 3vw , 50px);
 	font-weight: bold;
 	background-image: url("https://assets.website-files.com/61c070585317d242d3a59789/61c070585317d282fba597e2_user.jpeg");
     -webkit-text-fill-color: transparent;

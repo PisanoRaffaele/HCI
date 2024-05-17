@@ -6,7 +6,6 @@ var words = [
 	"programming",
 	"sunglasses",
 	"watermelon",
-	"ao"
 ];
 
 var word;
@@ -24,9 +23,9 @@ function initGame() {
 
 	$('#guess-btn').removeClass('unvisible');
 
-
-	guessesRemaining = 6;
-	$("#guesses").text("Tentativi rimasti: " + guessesRemaining);
+	$('#letter').addClass("visible");
+	guessesRemaining = 7;
+	$("#guesses").text("Attempts left: " + guessesRemaining);
 	word = words[Math.floor(Math.random() * words.length)];
 	letters = word.split("");
 	underscores = [];
@@ -62,19 +61,45 @@ $("#guess-btn").on("click", function () {
 			}
 			if (!found) {
 				guessesRemaining--;
-				$("#guesses").text("Tentativi rimasti: " + guessesRemaining);
+				$("#guesses").text("Attempts left: " + guessesRemaining);
 			}
 			$("#word").text(underscores.join(" "));
 			if (underscores.indexOf("_") === -1) {
-				aggiornaClassifica()
 				clearInterval(countdown);
+				html = '<h1>Game Over!</h1><p>Your score is: ' + time + 's</p><button id="reset-alert-btn">Play Again</button><p>Share your score:</p>';
+				html += '<div class="alert-links"><a href="#" class="footer-link"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>';
+				html += '<a href="#" class="footer-link"><i class="fas fa-envelope"></i></a><a href="#" class="footer-link"><i class="fab fa-instagram"></i></a></div>';
+				$('.alert').addClass('show');
+				$('.alert').html(html);
+				$('main').addClass('blur');
+				$('footer').addClass('blur');
+				$('#reset-alert-btn').click(function () {
+					$('.alert').removeClass('show');
+					$('.alert').html('');
+					$('main').removeClass('blur');
+					$('footer').removeClass('blur');
+				});
+				aggiornaClassifica()
 				$('#guess-btn').addClass('unvisible');
 			} else if (guessesRemaining === 0) {
-				console.log("You lose. The word was '" + word + "'.");
 				clearInterval(countdown);
+				html = '<h1>Game Over!</h1><p style="text-align: center;">We are sorry! <br> The word was: "' + word + '"</p><button id="reset-alert-btn">Play Again</button>';
+				$('.alert').addClass('show');
+				$('.alert').html(html);
+				$('main').addClass('blur');
+				$('footer').addClass('blur');
+				$('#reset-alert-btn').click(function () {
+					$('.alert').removeClass('show');
+					$('.alert').html('');
+					$('main').removeClass('blur');
+					$('footer').removeClass('blur');
+				});
 				$('#guess-btn').addClass('unvisible');
 			}
 			$("#letter").val("");
+		}
+		else {
+			alert("Inserisci una lettera minuscola");
 		}
 	}
 });
@@ -86,7 +111,10 @@ $("#reset-btn").on("click", function () {
 		$('#reset-btn').text('Start');
 		Started = false;
 		time = 0;
+		$("#guesses").text("");
+		$("#word").text("");
 		$('#time').text(time);
+		$('#letter').removeClass("visible");
 		clearInterval(countdown);
 		$('#guess-btn').addClass('unvisible');
 	}
@@ -114,13 +142,13 @@ function get_classifica() {
 		success: function (response) {
 			var count = 0;
 			var html = '<h1 class="textSide">Leaderboard</h1>'
-			html += '<table><thead><tr><th>Posizione</th><th>Username</th><th>Punteggio</th></tr></thead><tbody>';
+			html += '<table><thead><tr><th>Rank</th><th>Username</th><th>Time</th></tr></thead><tbody>';
 			$.each(response, function (i, item) {
 				count = count + 1;
-				html += '<tr><td>' + (i + 1) + '</td><td>' + item.username + '</td><td>' + item.punteggio + '</td></tr>';
+				html += '<tr><td>' + (i + 1) + '</td><td>' + item.username + '</td><td>' + item.punteggio + 's</td></tr>';
 			});
 			if (count == 0 ) {
-				html += '<tr><td>1</td><td>(No Scores yet)</td><td>0</td></tr>';
+				html += '<tr><td></td><td>(No Scores yet)</td><td></td></tr>';
 			}
 			html += '</tbody></table>';
 			$('.classifica').html(html);

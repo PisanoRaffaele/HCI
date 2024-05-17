@@ -1,6 +1,6 @@
 $(() => {
 	var score = 0;
-	var time = 10;
+	var time = 1;
 	var countdown;
 	var gameStarted = false;
 
@@ -24,6 +24,32 @@ $(() => {
 				clearInterval(countdown);
 				$('#dot').unbind();
 				setTimeout(function () {
+					html = '<h1>Game Over!</h1><p>Your score is: ' + score + '</p><button id="reset-alert-btn">Play Again</button><p>Share your score:</p>';
+					html += '<div class="alert-links"><a href="#" class="footer-link"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>';
+					html += '<a href="#" class="footer-link"><i class="fas fa-envelope"></i></a><a href="#" class="footer-link"><i class="fab fa-instagram"></i></a></div>';
+					$('.alert').addClass('show');
+					$('.alert').html(html);
+					$('main').addClass('blur');
+					$('footer').addClass('blur');
+
+					$('#reset-alert-btn').click(function () {
+						$('.alert').removeClass('show');
+						$('.alert').html('');
+						$('main').removeClass('blur');
+						$('footer').removeClass('blur');
+						score = 0;
+						time = 10;
+						$('#score').text(score);
+						$('#time').text(time);
+						clearInterval(countdown);
+						$('#dot').unbind();
+						gameStarted = false;
+						$('#dot').click(function () {
+							if (!gameStarted) {
+								startGame();
+							}
+						});
+					});
 					aggiornaClassifica();
 				}, 100);
 				gameStarted = false;
@@ -71,13 +97,13 @@ $(() => {
 			success: function (response) {
 				var count = 0;
 				var html = '<h1 class="textSide">Leaderboard</h1>'
-				html += '<table><thead><tr><th>Posizione</th><th>Username</th><th>Punteggio</th></tr></thead><tbody>';
+				html += '<table><thead><tr><th>Rank</th><th>Username</th><th>Clicks</th></tr></thead><tbody>';
 				$.each(response, function (i, item) {
 					count = count + 1;
 					html += '<tr><td>' + (i + 1) + '</td><td>' + item.username + '</td><td>' + item.punteggio + '</td></tr>';
 				});
 				if (count == 0 ) {
-					html += '<tr><td>1</td><td>(No Scores yet)</td><td>0</td></tr>';
+					html += '<tr><td></td><td>(No Scores yet)</td><td></td></tr>';
 				}
 				html += '</tbody></table>';
 				$('.classifica').html(html);
@@ -103,9 +129,19 @@ $(() => {
 				get_classifica();
 			},
 			error: function (xhr, status, error) {
+				console.log(xhr.responseText);
 			}
 		});
 	}
 
 
 });
+
+
+/************************* Alert *************************/
+
+function showAlert(html) {
+
+}
+
+

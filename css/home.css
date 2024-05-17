@@ -139,7 +139,8 @@ body.light-mode .max-630 {
 
 .title-container h4{
     font-weight: bold !important;
-    font-size: clamp(18px, 2.3vw, 28px) !important;
+    font-size: clamp(25px, 2.2vw, 36px) !important;
+	margin: 0 !important;
 }
 
 .jumping-foto {
@@ -188,13 +189,13 @@ body.light-mode .max-630 {
     opacity: 0;
     position: absolute;
     display: inline-block;
-    padding: 18px 48px 16px;
+    padding: 16px 48px 18px;
     margin-top: 40px;
     border-radius: 99px;
     background-color: var(--yellow);
     transition: opacity 0.4s ease, transform 0.4s ease;
     color: #00001f;
-    font-size: 16px;
+    font-size: clamp(22px, 2vw, 32px) !important;
     line-height: 20px;
     font-weight: 600;
     text-align: center;
@@ -243,10 +244,11 @@ body.light-mode .max-630 {
     }
     .video-container video {
         transform: scale(1.5);
+        top: 10px;
     }
 
     .game-section {
-        padding: 60px 20px;
+        padding: 10px 20px;
         margin: auto 10px;
     }
 

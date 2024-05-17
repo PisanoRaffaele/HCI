@@ -31,7 +31,7 @@ body {
 }
 
 .textSide {
-	font-size: clamp(26px, 3vw , 50px);
+	font-size: clamp(30px, 3vw , 50px);
 	font-weight: bold;
 	background-image: url("https://assets.website-files.com/61c070585317d242d3a59789/61c070585317d282fba597e2_user.jpeg");
     -webkit-text-fill-color: transparent;
@@ -168,13 +168,7 @@ table {
 
 th {
 	padding: 10px;
-    font-size: clamp(10px, 3vw , 20px);
 }
-
-td {
-    font-size: clamp(10px, 3vw , 20px);
-}
-
 
 @media screen and (max-width: 780px) {
 
