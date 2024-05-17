@@ -217,3 +217,46 @@ h2 {
 	}
 }
 
+/****************************** Light mode ******************************/
+
+body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+body.light-mode main {
+    background-image: none; /* Rimuovi lo sfondo per il main */
+}
+
+body.light-mode #password.error,
+body.light-mode #username_email.error {
+    border-color: red; /* Cambia il colore del bordo */
+    box-shadow: 0 0 3px red; /* Cambia il colore dell'ombra */
+}
+
+body.light-mode .text-availabilty.error {
+    color: red; /* Cambia il colore del testo per l'elemento con la classe text-availabilty.error */
+}
+
+body.light-mode .text-availabilty.available {
+    color: green; /* Cambia il colore del testo per l'elemento con la classe text-availabilty.available */
+}
+
+body.light-mode h2 {
+    color: black; /* Cambia il colore del testo per gli elementi h2 */
+}
+
+body.light-mode .container {
+    color: black; /* Cambia il colore del testo per gli elementi con la classe container */
+}
+
+body.light-mode .form-input {
+    border-color: #ebebeb; /* Cambia il colore del bordo per gli input */
+    color: black; /* Cambia il colore del testo per gli input */
+}
+
+body.light-mode .form-submit {
+    color: var(--blue); /* Cambia il colore del testo per il pulsante .form-submit */
+    border-color: var(--yellow); /* Cambia il colore del bordo per il pulsante .form-submit */
+    background-color: var(--yellow); /* Cambia il colore di sfondo per il pulsante .form-submit */
+}

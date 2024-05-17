@@ -12,6 +12,25 @@ body {
     font-family: Arial;
 }
 
+body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+body.light-mode .textCenter,
+body.light-mode .textSide {
+    color: black; /* Cambia il colore del testo per gli elementi con classi textCenter e textSide */
+}
+
+
+body.light-mode .descriptionAbout,
+body.light-mode .about-footnote {
+    color: black; /* Cambia il colore del testo per gli elementi con classi descriptionAbout e about-footnote */
+}
+
+/* Puoi continuare ad aggiungere regole CSS per invertire i colori per altri elementi necessari nella modalità light */
+
+
 /****************************** END ******************************/
 
 

@@ -48,6 +48,32 @@ function dberror() {
 	console.log("Errore nel database");
 }
 
+// Funzione per impostare la modalità chiara
+function setLightMode() {
+	$("body").removeClass("night-mode").addClass("light-mode");
+	localStorage.setItem('mode', 'light'); // Salva la modalità nella memoria locale
+}
+
+// Funzione per impostare la modalità scura
+function setNightMode() {
+	$("body").removeClass("light-mode").addClass("night-mode");
+	localStorage.setItem('mode', 'night'); // Salva la modalità nella memoria locale
+}
+
+// Imposta la modalità al caricamento della pagina
+function setModeOnLoad() {
+	const savedMode = localStorage.getItem('mode');
+	if (savedMode === 'night') {
+		setNightMode();
+	} else {
+		setLightMode();
+	}
+}
+
+// Chiamata alla funzione per impostare la modalità al caricamento della pagina
+setModeOnLoad();
+
+
 // al submit del form, controlla che l'utente esista nel database e che la password sia corretta e in caso positivo, lo reindirizza alla pagina home
 // in caso negativo, mostra un messaggio di errore e non procede con il login
 $('#login_form').submit(function (event) {

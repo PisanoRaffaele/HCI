@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    margin: 20px;
+}
+
+.textCenter {
+	font-size: 55px;
+	font-weight: bold;
+	background-image: url("https://assets.website-files.com/61c070585317d242d3a59789/61c070585317d282fba597e2_user.jpeg");
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+	background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: repeat;
+    line-height: 120%;
+    letter-spacing: 0.014em;
+    margin: 20px auto;
+}
+
+.label {
+    font-weight: bold;
+}
+
+#volume-slider {
+    width: 100%;
+}
+
+#container {
+	padding-top : 160px !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	flex-direction: column;
+
+}
+
+.descriptionAbout {
+	font-size: clamp(14px, 4vw, 20px);
+	font-weight: 500;
+	line-height: 150%;
+	letter-spacing: 0.02em;
+	color: #fff;
+	margin-top: 32px;
+	margin-bottom: 32px;
+	max-width: 600px;
+	height: auto;
+}
+
+.setting {
+    margin-bottom: 50px; /* Aggiunge uno spazio di 20px tra i div */
+}
+
+
+body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+body.light-mode .textCenter,
+body.light-mode .label,
+body.light-mode .descriptionAbout {
+    color: black; /* Cambia il colore del testo quando la modalità light è attiva */
+}
+
+body.night-mode {
+    background-color: var(--blue);
+    color: white;
+}
+
+.mode-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+body.light-mode .mode-icon {
+    filter: invert(100%);
+}
+

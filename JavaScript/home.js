@@ -1,11 +1,37 @@
-// crea dinamicamente gli elementi html per ogni gioco trovato e li aggiunge alla pagina home 
+// crea dinamicamente gli elementi html per ogni gioco trovato e li aggiunge alla pagina home
 $(function () {
+
+    // Funzione per impostare la modalità chiara
+    function setLightMode() {
+        $("body").removeClass("night-mode").addClass("light-mode");
+        localStorage.setItem('mode', 'light'); // Salva la modalità nella memoria locale
+    }
+
+    // Funzione per impostare la modalità scura
+    function setNightMode() {
+        $("body").removeClass("light-mode").addClass("night-mode");
+        localStorage.setItem('mode', 'night'); // Salva la modalità nella memoria locale
+    }
+
+    // Imposta la modalità al caricamento della pagina
+    function setModeOnLoad() {
+        const savedMode = localStorage.getItem('mode');
+        if (savedMode === 'night') {
+            setNightMode();
+        } else {
+            setLightMode();
+        }
+    }
+
+    // Chiamata alla funzione per impostare la modalità al caricamento della pagina
+    setModeOnLoad();
+
     $.ajax({
         url: "fetch.php",
         dataType: "json",
         success: function (data) {
             var html = data.map(function (value) {
-                var X = Math.floor(Math.random() * 30); 
+                var X = Math.floor(Math.random() * 30);
                 var Y = Math.floor(Math.random() * 30);
                 return `
                 <div class="card" style="background-position: ${X}% ${Y}%;">

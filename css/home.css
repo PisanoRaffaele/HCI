@@ -12,6 +12,36 @@ body {
     font-family: Arial;
 }
 
+body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+body.light-mode .game-section {
+    background-color: white; /* Cambia il colore di sfondo della sezione dei giochi */
+    color: black; /* Cambia il colore del testo della sezione dei giochi */
+}
+
+body.light-mode .card {
+    background-color: white; /* Cambia il colore di sfondo delle carte */
+    color: black; /* Cambia il colore del testo delle carte */
+}
+
+body.light-mode .play-button {
+    background-color: var(--yellow); /* Cambia il colore di sfondo del pulsante "Let's play" */
+    color: black; /* Cambia il colore del testo del pulsante "Let's play" */
+}
+
+body.light-mode .card:hover {
+    border-color: var(--yellow); /* Cambia il colore del bordo delle carte al passaggio del mouse */
+}
+
+body.light-mode .play-button:hover {
+    background-color: #fff273; /* Cambia il colore di sfondo del pulsante "Let's play" al passaggio del mouse */
+    color: black; /* Cambia il colore del testo del pulsante "Let's play" al passaggio del mouse */
+}
+
+
 /****************************** Video Style ******************************/
 /* Video Container Style */
 .video-container {
@@ -67,6 +97,11 @@ body {
     font-weight: 600;
     line-height: clamp(20px, 6vw, 33px);
 }
+
+body.light-mode .max-630 {
+    color: black; /* Cambia il colore del testo per l'elemento .max-630 */
+}
+
 
 /****************************** Game Presentation ******************************/
 
