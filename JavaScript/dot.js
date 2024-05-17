@@ -1,6 +1,6 @@
 $(() => {
 	var score = 0;
-	var time = 10;
+	var time = 1;
 	var countdown;
 	var gameStarted = false;
 
@@ -129,6 +129,7 @@ $(() => {
 				get_classifica();
 			},
 			error: function (xhr, status, error) {
+				console.log(xhr.responseText);
 			}
 		});
 	}
