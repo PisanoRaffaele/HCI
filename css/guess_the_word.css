@@ -180,6 +180,14 @@ td {
 	max-width: 1280px;
 }
 
+.text-availabilty{
+	font-size: clamp(15px, 2vw, 20px);
+}
+
+.text-availabilty.error {
+    color: red;
+}
+
 @media screen and (max-width: 1324px) {
 	.container {
 		max-width: 1150px;
@@ -193,7 +201,7 @@ td {
 	}
 
 	.classifica  {
-		padding: 0px;
+		padding: 10px;
 		margin-top: 10px;
 	}
 

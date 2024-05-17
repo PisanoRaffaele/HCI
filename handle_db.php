@@ -2,6 +2,7 @@
 // se il metodo di richiesta non è POST reindirizza alla home, altrimenti connettiti al database e chiama la funzione main
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     header("Location:index.php?p=home");
+    exit;
 } else {
     $dbname = "MiniworldDB";
     $host = "localhost";
@@ -9,11 +10,12 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $user = "postgres";
     $password = "ciao";
 
-    $dbconn = pg_connect("dbname=$dbname host=$host port=$port user=$user password=$password") or die("Could not connect:" . pg_last_error());
-
+    $dbconn = pg_connect("dbname=$dbname host=$host port=$port user=$user password=$password");
+    if (!$dbconn) {
+        echo -42;
+        exit;
+    }
     main($dbconn);
-
-
 }
 ?>
 
@@ -113,13 +115,28 @@ function aggiorna_classifica($dbconn)
     if (pg_num_rows($result) > 0) {
         $row = pg_fetch_row($result);
         $punteggioOld = $row[3];
-        if (!(($order === "reverse" && $punteggio < $punteggioOld) || ($order !== "reverse" && $punteggio > $punteggioOld)))
-            return;
-    }
-    // Esegui la query utilizzando la connessione esplicita
-    $query = "INSERT INTO Statistiche (email, username, gioco, punteggio) VALUES ($1, $2, $3, $4)";
-    $result = pg_query_params($dbconn, $query, [$email, $username, $gioco, $punteggio]);
+        if (($order === "reverse" && $punteggio > $punteggioOld) || ($order !== "reverse" && $punteggio < $punteggioOld))
+            echo 0;
+        else {
+            // Esegui la query utilizzando la connessione esplicita
+            $query = "INSERT INTO Statistiche (email, username, gioco, punteggio)
+                VALUES ($1, $2, $3, $4)
+                ON CONFLICT (username, gioco) DO UPDATE SET
+                    email = EXCLUDED.email,
+                    punteggio = EXCLUDED.punteggio";
 
+            $result = pg_query_params($dbconn, $query, [$email, $username, $gioco, $punteggio]);
+
+            if ($result) {
+                echo 0;
+            } else {
+                echo -42;
+            }
+        }
+    }
+    else {
+        echo -42;
+    }
 }
 
 // resetta la password di un utente nel database se le credenziali sono corrette tramite la funzione password_verify()

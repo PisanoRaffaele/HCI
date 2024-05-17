@@ -30,7 +30,7 @@ $(function () {
         url: "fetch.php",
         dataType: "json",
         success: function (data) {
-            var html = data.map(function (value) {
+            var html = data.slice(0, 4).map(function (value) {
                 var X = Math.floor(Math.random() * 30);
                 var Y = Math.floor(Math.random() * 30);
                 return `

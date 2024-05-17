@@ -1,11 +1,12 @@
 var words = [
-	"banana",
-	"chocolate",
-	"computer",
-	"pizza",
-	"programming",
-	"sunglasses",
-	"watermelon",
+	// "banana",
+	// "chocolate",
+	// "computer",
+	// "pizza",
+	// "programming",
+	// "sunglasses",
+	// "watermelon",
+	"ciao"
 ];
 
 var word;
@@ -65,21 +66,36 @@ $("#guess-btn").on("click", function () {
 			}
 			$("#word").text(underscores.join(" "));
 			if (underscores.indexOf("_") === -1) {
-				clearInterval(countdown);
-				html = '<h1>Game Over!</h1><p>Your score is: ' + time + 's</p><button id="reset-alert-btn">Play Again</button><p>Share your score:</p>';
-				html += '<div class="alert-links"><a href="#" class="footer-link"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>';
-				html += '<a href="#" class="footer-link"><i class="fas fa-envelope"></i></a><a href="#" class="footer-link"><i class="fab fa-instagram"></i></a></div>';
-				$('.alert').addClass('show');
-				$('.alert').html(html);
-				$('main').addClass('blur');
-				$('footer').addClass('blur');
-				$('#reset-alert-btn').click(function () {
-					$('.alert').removeClass('show');
-					$('.alert').html('');
-					$('main').removeClass('blur');
-					$('footer').removeClass('blur');
+				var error = 0;
+				aggiornaClassifica().then(function(result) {
+					error = result;
 				});
-				aggiornaClassifica()
+				clearInterval(countdown);
+				setTimeout(function () {
+
+					html = '<h1>Game Over!</h1><p>Your score is: ' + time + 's</p><button id="reset-alert-btn">Play Again</button>';
+					if (error == 1) {
+						html += "<div class='warn'><p>Sorry! At the moment we can't update the Leaderboard</p>";
+					}
+					else if (error == 2) {
+						html += '<div class="warn"><p>Need to login to save your score!</p>';
+					}
+					else {
+						html += '<div class="warn-g"><p>Score saved!</p>';
+					}
+					html += '</div><p>Share your score:</p><div class="alert-links"><a href="#" class="footer-link"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer-link"><i class="fab fa-twitter">';
+					html += '</i></a><a href="#" class="footer-link"><i class="fas fa-envelope"></i></a><a href="#" class="footer-link"><i class="fab fa-instagram"></i></a></div>';
+					$('.alert').addClass('show');
+					$('.alert').html(html);
+					$('main').addClass('blur');
+					$('footer').addClass('blur');
+					$('#reset-alert-btn').click(function () {
+						$('.alert').removeClass('show');
+						$('.alert').html('');
+						$('main').removeClass('blur');
+						$('footer').removeClass('blur');
+					});
+				}, 100);
 				$('#guess-btn').addClass('unvisible');
 			} else if (guessesRemaining === 0) {
 				clearInterval(countdown);
@@ -99,11 +115,16 @@ $("#guess-btn").on("click", function () {
 			$("#letter").val("");
 		}
 		else {
-			alert("Inserisci una lettera minuscola");
+			$(".text-availabilty").text("Need to insert a letter!");
+			$(".text-availabilty").addClass('error');
 		}
 	}
 });
 
+$('#letter').on('input', function () {
+	$(".text-availabilty").text("");
+	$(".text-availabilty").removeClass('error');
+});
 
 // resetta il gioco e le variabili di gioco
 $("#reset-btn").on("click", function () {
@@ -161,19 +182,31 @@ function get_classifica() {
 
 // aggiorna la classifica nel database
 function aggiornaClassifica() {
-	var logged = localStorage.getItem('isLoggedIn');
-	if (logged == "null" || logged === "false")
-		return;
-	var username = localStorage.getItem('username');
-	var email = localStorage.getItem('email');
-	$.ajax({
-		type: "POST",
-		url: "handle_db.php",
-		data: { gioco: "GTW", order: "reverse", funzione: "aggiorna_classifica", punteggio: time, username: username, email: email },
-		success: function (data) {
-			get_classifica();
-		},
-		error: function (xhr, status, error) {
+	return new Promise((resolve) => {
+		var logged = localStorage.getItem('isLoggedIn');
+		if (logged == "null" || logged === "false"){
+			resolve(2);
+			return;
 		}
+		var username = localStorage.getItem('username');
+		var email = localStorage.getItem('email');
+		$.ajax({
+			type: "POST",
+			url: "handle_db.php",
+			data: { gioco: "GTW", order: "reverse", funzione: "aggiorna_classifica", punteggio: time, username: username, email: email },
+			success: function (data) {
+				var lines = data.split("\n");
+				if (lines[lines.length - 1] == -42) {
+					resolve(1);
+					return;
+				}
+				get_classifica();
+				resolve(0);
+			},
+			error: function (xhr, status, error) {
+				console.log(xhr.responseText);
+				resolve(1);
+			}
+		});
 	});
 }

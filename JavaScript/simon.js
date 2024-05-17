@@ -59,24 +59,38 @@ $(".color").on("click", function () {
                 $("#start-btn").text("Next Level");
             }
         } else {
-            playing = false;
-            html = '<h1>Game Over!</h1><p>Your score is: ' + level + '</p><button id="reset-alert-btn">Play Again</button><p>Share your score:</p>';
-            html += '<div class="alert-links"><a href="#" class="footer-link"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>';
-            html += '<a href="#" class="footer-link"><i class="fas fa-envelope"></i></a><a href="#" class="footer-link"><i class="fab fa-instagram"></i></a></div>';
-            $('.alert').addClass('show');
-            $('.alert').html(html);
-            $('main').addClass('blur');
-            $('footer').addClass('blur');
-            $('#reset-alert-btn').click(function () {
-                $('.alert').removeClass('show');
-                $('.alert').html('');
-                $('main').removeClass('blur');
-                $('footer').removeClass('blur');
-                level = 1;
-                $('#level').text(level);
-                $("#start-btn").text("Start");
+            var error = 0;
+            aggiornaClassifica().then(function(result) {
+                error = result;
             });
-            aggiornaClassifica()
+            setTimeout(function () {
+                playing = false;
+                html = '<h1>Game Over!</h1><p>Your score is: ' + level + '</p><button id="reset-alert-btn">Play Again</button>';
+                if (error == 1) {
+                    html += "<div class='warn'><p>Sorry! At the moment we can't update the Leaderboard</p>";
+                }
+                else if (error == 2) {
+                    html += '<div class="warn"><p>Need to login to save your score!</p>';
+                }
+                else {
+                    html += '<div class="warn-g"><p>Score saved!</p>';
+                }
+                html += '</div><p>Share your score:</p><div class="alert-links"><a href="#" class="footer-link"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer-link"><i class="fab fa-twitter">';
+                html += '</i></a><a href="#" class="footer-link"><i class="fas fa-envelope"></i></a><a href="#" class="footer-link"><i class="fab fa-instagram"></i></a></div>';
+                $('.alert').addClass('show');
+                $('.alert').html(html);
+                $('main').addClass('blur');
+                $('footer').addClass('blur');
+                $('#reset-alert-btn').click(function () {
+                    $('.alert').removeClass('show');
+                    $('.alert').html('');
+                    $('main').removeClass('blur');
+                    $('footer').removeClass('blur');
+                    level = 1;
+                    $('#level').text(level);
+                    $("#start-btn").text("Start");
+                });
+            }, 100);
         }
     }
 });
@@ -118,19 +132,31 @@ function get_classifica() {
 
 // aggiorna la classifica nel database
 function aggiornaClassifica() {
-    var logged = localStorage.getItem('isLoggedIn');
-    if (logged == "null" || logged === "false")
-        return;
-    var username = localStorage.getItem('username');
-    var email = localStorage.getItem('email');
-    $.ajax({
-        type: "POST",
-        url: "handle_db.php",
-        data: { gioco: "SIMON", order: "notReverse", funzione: "aggiorna_classifica", punteggio: level, username: username, email: email },
-        success: function (data) {
-            get_classifica();
-        },
-        error: function (xhr, status, error) {
+    return new Promise((resolve) => {
+        var logged = localStorage.getItem('isLoggedIn');
+        if (logged == "null" || logged === "false"){
+            resolve(2);
+            return;
         }
+        var username = localStorage.getItem('username');
+        var email = localStorage.getItem('email');
+        $.ajax({
+            type: "POST",
+            url: "handle_db.php",
+            data: { gioco: "SIMON", order: "notReverse", funzione: "aggiorna_classifica", punteggio: level, username: username, email: email },
+            success: function (data) {
+                var lines = data.split("\n");
+                if (lines[lines.length - 1] == -42) {
+                    resolve(1);
+                    return;
+                }
+                get_classifica();
+                resolve(0);
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
+                resolve(1);
+            }
+        });
     });
 }
