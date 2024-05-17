@@ -151,6 +151,20 @@ function vittoria() {
 	gameStarted = false;
 	clearInterval(countdown);
 	setTimeout(function () {
+		html = '<h1>Game Over!</h1><p>Your score is: ' + time + 's</p><button id="reset-alert-btn">Play Again</button><p>Share your score:</p>';
+		html += '<div class="alert-links"><a href="#" class="footer-link"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>';
+		html += '<a href="#" class="footer-link"><i class="fas fa-envelope"></i></a><a href="#" class="footer-link"><i class="fab fa-instagram"></i></a></div>';
+		$('.alert').addClass('show');
+		$('.alert').html(html);
+		$('main').addClass('blur');
+		$('footer').addClass('blur');
+		$('#reset-alert-btn').click(function () {
+			$('.alert').removeClass('show');
+			$('.alert').html('');
+			$('main').removeClass('blur');
+			$('footer').removeClass('blur');
+			resetGame();
+		});
 		aggiornaClassifica();
 	}, 1000);
 }

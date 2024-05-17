@@ -1,6 +1,6 @@
 $(() => {
 	var score = 0;
-	var time = 1;
+	var time = 10;
 	var countdown;
 	var gameStarted = false;
 
@@ -24,7 +24,9 @@ $(() => {
 				clearInterval(countdown);
 				$('#dot').unbind();
 				setTimeout(function () {
-					html = '<h1>Game Over!</h1><p>Your score is: ' + score + '</p><button id="reset-alert-btn">Play Again</button>';
+					html = '<h1>Game Over!</h1><p>Your score is: ' + score + '</p><button id="reset-alert-btn">Play Again</button><p>Share your score:</p>';
+					html += '<div class="alert-links"><a href="#" class="footer-link"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>';
+					html += '<a href="#" class="footer-link"><i class="fas fa-envelope"></i></a><a href="#" class="footer-link"><i class="fab fa-instagram"></i></a></div>';
 					$('.alert').addClass('show');
 					$('.alert').html(html);
 					$('main').addClass('blur');

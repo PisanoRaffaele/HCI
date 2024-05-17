@@ -1,11 +1,11 @@
-// crea dinamicamente gli elementi html per ogni gioco trovato e li aggiunge alla pagina home 
+// crea dinamicamente gli elementi html per ogni gioco trovato e li aggiunge alla pagina home
 $(function () {
     $.ajax({
         url: "fetch.php",
         dataType: "json",
         success: function (data) {
-            var html = data.map(function (value) {
-                var X = Math.floor(Math.random() * 30); 
+            var html = data.slice(0, 4).map(function (value) {
+                var X = Math.floor(Math.random() * 30);
                 var Y = Math.floor(Math.random() * 30);
                 return `
                 <div class="card" style="background-position: ${X}% ${Y}%;">

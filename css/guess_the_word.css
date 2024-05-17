@@ -78,6 +78,7 @@
 	margin-top: 16px;
 	border: none;
 	border-radius: 8px;
+	display: none;;
   }
 
   #guesses {
@@ -88,6 +89,9 @@
 	color: #fff;
   }
 
+#letter.visible {
+	display: block;
+}
 
 	.unvisible {
 		display: none !important;

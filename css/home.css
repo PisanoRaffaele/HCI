@@ -154,7 +154,7 @@ body {
     opacity: 0;
     position: absolute;
     display: inline-block;
-    padding: 18px 48px 16px;
+    padding: 16px 48px 18px;
     margin-top: 40px;
     border-radius: 99px;
     background-color: var(--yellow);
@@ -209,10 +209,11 @@ body {
     }
     .video-container video {
         transform: scale(1.5);
+        top: 10px;
     }
 
     .game-section {
-        padding: 60px 20px;
+        padding: 10px 20px;
         margin: auto 10px;
     }
 

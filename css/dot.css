@@ -115,6 +115,7 @@ body {
 	text-align: center;
 	color: #fff;
 	flex-direction: column;
+	margin-bottom: 30px;
 }
 
 table {

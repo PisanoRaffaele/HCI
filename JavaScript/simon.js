@@ -1,7 +1,7 @@
 var colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown", "white"];
 var sequence = [];
 var playing = false;
-var level = 0;
+var level = 1;
 
 // funzione per generare una sequenza di n colori casuali
 function generateSequence(n) {
@@ -37,19 +37,12 @@ function highlight(color) {
 
 // gestore evento click sul pulsante "Start"
 $("#start-btn").on("click", function () {
-    var status = $(this).text();
     if (!playing) {
-        if (status != "Game Over") {
-            playing = true;
-            sequence = generateSequence(level + 1);
-            playSequence(sequence);
-            $(this).text("Playing...");
-        }
-        else {
-            level = 0;
-            $(this).text("Start");
-        }
-        $('#level').text(level + 1);
+        playing = true;
+        sequence = generateSequence(level);
+        playSequence(sequence);
+        $(this).text("Playing...");
+        $('#level').text(level);
     }
 });
 
@@ -66,9 +59,23 @@ $(".color").on("click", function () {
                 $("#start-btn").text("Next Level");
             }
         } else {
-            // hai perso
             playing = false;
-            $("#start-btn").text("Game Over");
+            html = '<h1>Game Over!</h1><p>Your score is: ' + level + '</p><button id="reset-alert-btn">Play Again</button><p>Share your score:</p>';
+            html += '<div class="alert-links"><a href="#" class="footer-link"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>';
+            html += '<a href="#" class="footer-link"><i class="fas fa-envelope"></i></a><a href="#" class="footer-link"><i class="fab fa-instagram"></i></a></div>';
+            $('.alert').addClass('show');
+            $('.alert').html(html);
+            $('main').addClass('blur');
+            $('footer').addClass('blur');
+            $('#reset-alert-btn').click(function () {
+                $('.alert').removeClass('show');
+                $('.alert').html('');
+                $('main').removeClass('blur');
+                $('footer').removeClass('blur');
+                level = 1;
+                $('#level').text(level);
+                $("#start-btn").text("Start");
+            });
             aggiornaClassifica()
         }
     }
