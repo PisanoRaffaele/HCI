@@ -17,7 +17,7 @@ $(() => {
     $('[name="personal"]').each(function () {
         var elem = $(this);
         if (isLoggedIn == 'true') {
-            elem.html('Profilo');
+            elem.html('Profile');
             elem.attr('href', '?p=profile');
         }
     });
