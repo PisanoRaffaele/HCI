@@ -3,16 +3,16 @@ $('#playButton').click(function() {
     var audio = document.getElementById("relaxing-music");
     audio.loop = true;
     audio.play();
-    $('#playButton').css('display', 'none');
-    $('#pauseButton').css('display', 'flex');
+    $('#playButton').addClass('no-show');
+    $('#pauseButton').removeClass('no-show');
     localStorage.setItem('audioState', 'playing');
 });
 
 $('#pauseButton').click(function() {
     var audio = document.getElementById("relaxing-music");
     audio.pause();
-    $('#pauseButton').css('display', 'none');
-    $('#playButton').css('display', 'flex');
+    $('#pauseButton').addClass('no-show');
+    $('#playButton').removeClass('no-show');
     localStorage.setItem('audioState', 'paused');
 });
 
@@ -20,32 +20,26 @@ $('#dayButton').click(function() {
     localStorage.setItem('mode', 'light');
     document.body.classList.remove('night-mode');
     document.body.classList.add('light-mode');
-    $('#dayButton').css('display', 'none');
-    $('#nightButton').css('display', 'flex');
+    $('#dayButton').addClass('no-show');
+    $('#nightButton').removeClass('no-show');
 });
 
 $('#nightButton').click(function() {
     localStorage.setItem('mode', 'night');
     document.body.classList.remove('light-mode');
     document.body.classList.add('night-mode');
-    $('#nightButton').css('display', 'none');
-    $('#dayButton').css('display', 'flex');
+    $('#nightButton').addClass('no-show');
+    $('#dayButton').removeClass('no-show');
 });
 
 $('#upButton').click(function() {
-    $('#upButton').css('display', 'none');
-    $('#downButton').css('display', 'flex');
+    $('#upButton').addClass('no-show');
+    $('#downButton').removeClass('no-show');
 });
 
 $('#downButton').click(function() {
-    $('#downButton').css('display', 'none');
-    $('#upButton').css('display', 'flex');
-});
-
-$('document').ready(function() {
-    $('#pauseButton').css('display', 'none');
-    $('#nightButton').css('display', 'none');
-    $('#downButton').css('display', 'none');
+    $('#downButton').addClass('no-show');
+    $('#upButton').removeClass('no-show');
 });
 
 /******************* Top Header *******************/
@@ -53,8 +47,8 @@ $('document').ready(function() {
 $(() => {
 
     const button = document.querySelector('#nightButton');
-    button.click();
-    console.log('click');
+    if (localStorage.getItem('mode') == 'night')
+        button.click();
 
     $('#hamburger').on('click', function () {
         $('.animated-togglebutton').toggleClass('open');

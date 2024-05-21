@@ -111,8 +111,12 @@ td {
     margin: 10px;
     text-decoration: none;
     outline: none;
+	display: flex;
 }
 
+.settings button.no-show {
+	display: none !important;
+}
 
 /******************** ALERT ************************/
 
