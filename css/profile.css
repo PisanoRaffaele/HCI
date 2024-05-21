@@ -14,6 +14,18 @@ body {
     background: rgb(99, 39, 120);
 }
 
+body.light-mode {
+    background-color: #90d4fc;
+}
+
+body.light-mode .top-bg{
+    background-image: none;
+}
+
+body.light-mode .profile-button {
+    background-color: #585EFF;
+}
+
 
 /****************************** TEXT ******************************/
 

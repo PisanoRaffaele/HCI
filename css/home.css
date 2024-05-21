@@ -23,7 +23,7 @@ body.light-mode .game-section {
 }
 
 body.light-mode .card {
-    background-color: white; /* Cambia il colore di sfondo delle carte */
+    background-color: #585EFF; /* Cambia il colore di sfondo delle carte */
     color: black; /* Cambia il colore del testo delle carte */
 }
 
@@ -40,6 +40,8 @@ body.light-mode .play-button:hover {
     background-color: #fff273; /* Cambia il colore di sfondo del pulsante "Let's play" al passaggio del mouse */
     color: black; /* Cambia il colore del testo del pulsante "Let's play" al passaggio del mouse */
 }
+
+
 
 
 /****************************** Video Style ******************************/

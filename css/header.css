@@ -11,6 +11,15 @@ body {
     background-color: var(--blue);
     font-family: Arial;
 }
+
+body.light-mode .logo{
+    background-color: rgba(88,94,255, 0.7);
+}
+
+body.light-mode .navbar{
+    background-color: rgba(88,94,255, 0.7);
+}
+
 /****************************** Navbar ******************************/
 
 .logo {
