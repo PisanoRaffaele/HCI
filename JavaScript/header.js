@@ -17,38 +17,62 @@ $('#pauseButton').click(function() {
 });
 
 $('#dayButton').click(function() {
-    localStorage.setItem('mode', 'light');
     document.body.classList.remove('night-mode');
     document.body.classList.add('light-mode');
     $('#dayButton').addClass('no-show');
     $('#nightButton').removeClass('no-show');
+    if (localStorage.getItem('mode') == 'night')
+    {
+        localStorage.setItem('mode', 'light');
+        location.reload();
+    }
 });
 
 $('#nightButton').click(function() {
-    localStorage.setItem('mode', 'night');
     document.body.classList.remove('light-mode');
     document.body.classList.add('night-mode');
     $('#nightButton').addClass('no-show');
     $('#dayButton').removeClass('no-show');
+    if (localStorage.getItem('mode') == 'light')
+    {
+        localStorage.setItem('mode', 'night');
+        location.reload();
+    }
+
 });
 
 $('#upButton').click(function() {
     $('#upButton').addClass('no-show');
     $('#downButton').removeClass('no-show');
+    $('.settings').addClass('show');
 });
 
 $('#downButton').click(function() {
     $('#downButton').addClass('no-show');
     $('#upButton').removeClass('no-show');
+    $('.settings').removeClass('show');
 });
 
 /******************* Top Header *******************/
 
 $(() => {
 
-    const button = document.querySelector('#nightButton');
+    const button1 = document.querySelector('#nightButton');
+    const button2 = document.querySelector('#dayButton');
     if (localStorage.getItem('mode') == 'night')
-        button.click();
+        button1.click();
+    else
+        button2.click();
+    if (localStorage.getItem('audioState') == 'playing')
+    {
+        $('#playButton').addClass('no-show');
+        $('#pauseButton').removeClass('no-show');
+    }
+    else
+    {
+        $('#pauseButton').addClass('no-show');
+        $('#playButton').removeClass('no-show');
+    }
 
     $('#hamburger').on('click', function () {
         $('.animated-togglebutton').toggleClass('open');

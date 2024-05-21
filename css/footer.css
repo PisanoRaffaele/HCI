@@ -83,18 +83,25 @@ td {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
+	flex-direction: row;
 	background-color: var(--blue-opaco);
 	padding: 10px;
+	padding-left: 0 !important;
 	border-radius: 10px;
 	z-index: 9999;
-	bottom: 0;
-	left: 50%;
-	transform: translateX(-50%);
+	right: 0;
+	top: 75%;
+	transform: translateX(65%);
+	transition: 0.5s;
+}
+
+.settings.show {
+	transform: translate(5%);
+	transition: 0.5s;
 }
 
 .settings button i {
-    font-size: 36px;
+    font-size: 34px;
     color: white;
 }
 
@@ -109,9 +116,14 @@ td {
     background-color: transparent;
     cursor: pointer;
     margin: 10px;
+	margin-left: 5px;
     text-decoration: none;
     outline: none;
 	display: flex;
+}
+
+.settings #no-margin button {
+	margin: 5 !important;
 }
 
 .settings button.no-show {
