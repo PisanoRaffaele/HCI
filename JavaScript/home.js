@@ -64,7 +64,8 @@ $(function () {
         },
         error: function (xhr, status, error) {
             console.log("Errore: " + xhr.responseText);
-            console.log(status, error);
+            var html = '<div class="card"><h4 class="card-title">We are sorry, the server is currently down. Unable to load the games</h4></div>';
+            $(".game-list").html(html);
         }
     });
 });

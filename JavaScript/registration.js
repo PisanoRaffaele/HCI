@@ -33,7 +33,7 @@ $(".toggle-re_password").click(function () {
 function already_exist() {
 	$('#email').addClass('error');
 	$('#email').next('small').addClass('error');
-	$('#email + small').text('Utente già registrato con questa email. Prova a fare il login');
+	$('#email + small').text('This email is already registered, try to login');
 	$('#username').removeClass('error');
 	$('#username').next('small').removeClass('error');
 	$('#username').next('small').text('');
@@ -55,12 +55,12 @@ $('#username').on('input', function () {
 			if (data == 1) {
 				$('#username').addClass('error');
 				$('#username').next('small').removeClass('available').addClass('error');
-				$('#username').next('small').text('Username già in uso');
+				$('#username').next('small').text('Username already in use');
 			}
 			else {
 				$('#username').removeClass('error');
 				$('#username').next('small').removeClass('error').addClass('available');
-				$('#username').next('small').text('Username disponibile');
+				$('#username').next('small').text('Username available');
 			}
 		},
 		error: function (xhr, status, error) {
@@ -87,14 +87,14 @@ $("#password").on({
 		if (password && password.length < 8) {
 			$(this).addClass('error');
 			$(this).next('small').addClass('error');
-			$(this).next('small').text('La password deve essere lunga almeno 8 caratteri');
+			$(this).next('small').text('The password must be at least 8 characters long');
 			$('.toggle-password').addClass('field-icon-error1');
 		}
 		else if (!passwordRegex.test(password)) {
 			$(this).removeClass('error');
 			$(this).addClass('error');
 			$(this).next('small').addClass('error');
-			$(this).next('small').text('La password deve contenere almeno un carattere maiuscolo e un numero');
+			$(this).next('small').text('The password must contain at least one uppercase letter and one number');
 			$('.toggle-password').addClass('field-icon-error2');
 		}
 	},
@@ -118,7 +118,7 @@ $("#re_password").on({
 		if ($(this).val() && $(this).val() != firstPassword) {
 			$(this).addClass('error');
 			$(this).next('small').addClass('error');
-			$(this).next('small').text('Le password non coincidono');
+			$(this).next('small').text('The passwords do not match');
 			$('.toggle-re_password').addClass('field-icon-error1');
 		}
 	},
@@ -152,14 +152,14 @@ $('#registration_form').submit(function (event) {
 	if (!emailRegex.test(email)) {
 		$('#email').addClass('error');
 		$('#email').next('small').removeClass('available').addClass('error');
-		$('#email').next('small').text('insierisci una email valida');
+		$('#email').next('small').text('Email not valid');
 		return false;
 	}
 
 	if (password.length < 8) {
 		$('#password').addClass('error');
 		$('#password').next('small').addClass('error');
-		$('#password').next('small').text('La password deve essere lunga almeno 8 caratteri');
+		$('#password').next('small').text('The password must be at least 8 characters long');
 		return false;
 	}
 
@@ -168,14 +168,14 @@ $('#registration_form').submit(function (event) {
 		console.log('Password non valida')
 		$('#password').addClass('error');
 		$('#password').next('small').addClass('error');
-		$('#password').next('small').text('La password deve contenere almeno un carattere maiuscolo e un numero');
+		$('#password').next('small').text('The password must contain at least one uppercase letter and one number');
 		return false;
 	}
 
 	if (password != re_password) {
 		$('#re_password').addClass('error');
 		$('#re_password').next('small').addClass('error');
-		$('#re_password').next('small').text('Le password non coincidono');
+		$('#re_password').next('small').text('The passwords do not match');
 		return false;
 	}
 
@@ -194,6 +194,12 @@ $('#registration_form').submit(function (event) {
 			}
 		},
 		error: function (xhr, status, error) {
+			$('#email').addClass('error');
+			$('#email').next('small').removeClass('available').addClass('error');
+			$('#email').next('small').text('We are sorry, the server is currently down. Try again later');
+			$('#username').addClass('error');
+			$('#username').next('small').removeClass('available').addClass('error');
+			$('#username').next('small').text('We are sorry, the server is currently down. Try again later');
 			console.log("Errore: " + xhr.responseText);
 		}
 	});

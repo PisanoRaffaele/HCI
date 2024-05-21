@@ -1,12 +1,12 @@
 var words = [
-	// "banana",
-	// "chocolate",
-	// "computer",
-	// "pizza",
-	// "programming",
-	// "sunglasses",
-	// "watermelon",
-	"ciao"
+	"banana",
+	"chocolate",
+	"computer",
+	"pizza",
+	"programming",
+	"sunglasses",
+	"watermelon",
+	// "ciao"
 ];
 
 var word;

@@ -85,12 +85,12 @@ function get_game(input_data) {
                         `;
                 }).join("");
             if (html == '') {
-                html = '<div class="dropdown-game-container"><div class="search-game-text"><h4 class="search-game-title">Nessun gioco trovato</h4></div></div>';
+                html = '<div class="dropdown-game-container"><div class="search-game-text"><h4 class="search-game-title">No game found</h4></div></div>';
             }
             $(".search-game-result").html(html);
         },
         error: function (xhr, status, error) {
-            var html = "<div class='dropdown-game-container'><div class='search-game-text'><h4 class='search-game-title'>Ci dispiace! C'è stato un errore durante il caricamento, riprova piu tardi</h4></div></div>";
+            var html = "<div class='dropdown-game-container'><div class='search-game-text'><h4 class='search-game-title'>We are sorry, the server is currently down. Try again later</h4></div></div>";
             $(".search-game-result").html(html);
         }
     });
