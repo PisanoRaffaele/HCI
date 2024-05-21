@@ -220,7 +220,6 @@ body {
     visibility: hidden;
     justify-content: center;
     align-items: center;
-    text-align: center;
     transform: translateY(-100%);
     backdrop-filter: blur(7px);
     transition: transform 0.3s;
@@ -286,7 +285,7 @@ body {
     border: none;
     background-color: transparent;
     color: #fff;
-    font-size: clamp(20px, 5vw, 54px);
+    font-size: clamp(23px, 3vw, 36px);
     font-weight: 700;
     letter-spacing: 0.012em;
     outline: none;
@@ -360,14 +359,14 @@ body {
     color: #fff;
     display: flex;
     justify-content: flex-start;
-    font-size: clamp(20px, 2vw, 34px);
+    font-size: clamp(23px, 2.2vw, 34px);
 }
 
 .search-game-description {
     width: 100%;
     color: #8a8a9c;
     text-align: left;
-    font-size: clamp(15px, 2vw, 24px);
+    font-size: clamp(19px, 1.8vw, 25px);
 }
 
 .search-game-text {
@@ -421,6 +420,10 @@ body {
 
     .dropdown-link:hover {
         color: var(--yellow);
+    }
+
+    .dropdown-nav-container.show {
+        padding-top: 125px;
     }
 
 }

@@ -33,7 +33,7 @@ $(window).on('resize', function () {
     }
 });
 
-// fa apparire il search dropdown quando si clicca sull'icona della ricerca e nasconde l'header e il menu hamburger 
+// fa apparire il search dropdown quando si clicca sull'icona della ricerca e nasconde l'header e il menu hamburger
 $('#search-btn2, #search-btn').on('click', function () {
     $('.dropdown-search-container').toggleClass('show');
     $("header").css('visibility', 'hidden');
@@ -56,7 +56,7 @@ $('.close-search').on('click', function () {
     $('.video-container').css('margin-top', '80');
 });
 
-// ottiene i giochi dal database e li aggiunge al search dropdown in base all'input dell'utente 
+// ottiene i giochi dal database e li aggiunge al search dropdown in base all'input dell'utente
 // crea dinamicamente gli elementi html per ogni gioco trovato e li aggiunge al search dropdown
 function get_game(input_data) {
     $.ajax({
@@ -84,10 +84,14 @@ function get_game(input_data) {
                             <div class="dropdown-separator-search"></div>
                         `;
                 }).join("");
+            if (html == '') {
+                html = '<div class="dropdown-game-container"><div class="search-game-text"><h4 class="search-game-title">Nessun gioco trovato</h4></div></div>';
+            }
             $(".search-game-result").html(html);
         },
         error: function (xhr, status, error) {
-            console.log("Errore: " + xhr.responseText);
+            var html = "<div class='dropdown-game-container'><div class='search-game-text'><h4 class='search-game-title'>Ci dispiace! C'è stato un errore durante il caricamento, riprova piu tardi</h4></div></div>";
+            $(".search-game-result").html(html);
         }
     });
 }
