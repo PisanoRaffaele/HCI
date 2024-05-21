@@ -5,6 +5,15 @@ $(function () {
     function setLightMode() {
         $("body").removeClass("night-mode").addClass("light-mode");
         localStorage.setItem('mode', 'light'); // Salva la modalità nella memoria locale
+        changeVideoSource('assets/HomeVideo2.mp4'); // Cambia la sorgente del video
+    }
+
+    // Funzione per cambiare la fonte del video
+    function changeVideoSource(source) {
+        $(".video-container video").attr("src", source);
+        var videoElement = $(".video-container video").get(0);
+        videoElement.load();
+        videoElement.play();
     }
 
     // Funzione per impostare la modalità scura

@@ -13,12 +13,12 @@ body {
 }
 
 body.light-mode {
-    background-color: white;
+    background-color: #90d4fc;
     color: black;
 }
 
 body.light-mode .game-section {
-    background-color: white; /* Cambia il colore di sfondo della sezione dei giochi */
+    background-color: #90d4fc; /* Cambia il colore di sfondo della sezione dei giochi */
     color: black; /* Cambia il colore del testo della sezione dei giochi */
 }
 

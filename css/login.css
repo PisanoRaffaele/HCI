@@ -220,7 +220,7 @@ h2 {
 /****************************** Light mode ******************************/
 
 body.light-mode {
-    background-color: white;
+    background-color: #90d4fc;
     color: black;
 }
 
