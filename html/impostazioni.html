@@ -1,20 +1,23 @@
 
-<div class="container" id = "container">
-    <h1 class="textCenter">Settings</h1>
-    <div class="setting">
-        <span class="descriptionAbout">Volume:</span>
-        <input type="range" min="0" max="100" value="50" class="slider" id="volume-slider" onchange="setVolume(this.value)">
-    </div>
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh; width: 100%">
+    <div class="container" id = "container">
+        <h1 class="textCenter">Settings</h1>
+        <div class="setting">
+            <span class="descriptionAbout">Volume:</span>
+            <input type="range" min="0" max="100" value="50" class="slider" id="volume-slider" onchange="setVolume(this.value)">
+        </div>
 
-    <div class="setting">
-        <span class="descriptionAbout">Dark mode:</span>
-        <label class="switch">
-            <input type="checkbox" id="night-mode-toggle" onchange="toggleNightMode()" style="display: none;">
-            <span class="slider round"></span>
-        </label>
-        <img id="day-icon" src="assets/night_icon.png" alt="Giorno" class="mode-icon" onclick="setLightMode()">
-        <img id="night-icon" src="assets/day_icon.png" alt="Notte" class="mode-icon" onclick="setNightMode()">
+        <div class="setting">
+            <span class="descriptionAbout">Dark mode:</span>
+            <label class="switch">
+                <input type="checkbox" id="night-mode-toggle" onchange="toggleNightMode()" style="display: none;">
+                <span class="slider round"></span>
+            </label>
+            <div>
+                <img id="day-icon" src="assets/night_icon.png" alt="Giorno" class="mode-icon" onclick="setLightMode()">
+                <img id="night-icon" src="assets/day_icon.png" alt="Notte" class="mode-icon" onclick="setNightMode()">
+            </div>
+        </div>
     </div>
 </div>
-
 

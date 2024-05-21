@@ -31,7 +31,7 @@ body {
 }
 
 #container {
-	padding-top : 160px !important;
+	padding-top : 80px !important;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -41,19 +41,23 @@ body {
 }
 
 .descriptionAbout {
-	font-size: clamp(14px, 4vw, 20px);
+	font-size: clamp(24px, 2.5vw, 32px);
 	font-weight: 500;
 	line-height: 150%;
 	letter-spacing: 0.02em;
 	color: #fff;
-	margin-top: 32px;
-	margin-bottom: 32px;
 	max-width: 600px;
 	height: auto;
+    padding: 20px;
 }
 
 .setting {
     margin-bottom: 50px; /* Aggiunge uno spazio di 20px tra i div */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
 
@@ -74,9 +78,15 @@ body.night-mode {
 }
 
 .mode-icon {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
+    margin: 20px;
+}
+
+.mode-icon:hover {
+    transform: scale(1.1);
+    color: #ffec37;
 }
 
 body.light-mode .mode-icon {
