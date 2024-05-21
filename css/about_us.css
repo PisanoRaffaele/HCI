@@ -69,7 +69,7 @@ body.light-mode .about-footnote {
 
 
 /****************************** Sfondo ******************************/
-.top-bg {
+.night-mode .top-bg {
     position: relative;
     left: 0%;
     top: 0%;

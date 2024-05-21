@@ -31,6 +31,23 @@ body.light-mode .about-footnote {
 
 
 /****************************** TEXT ******************************/
+
+.textCenter_title {
+	font-size: clamp(62px, 3.5vw , 64px);
+	font-weight: bold;
+	background-image: url("https://assets.website-files.com/61c070585317d242d3a59789/61c070585317d282fba597e2_user.jpeg");
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+	background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: repeat;
+    line-height: 120%;
+    letter-spacing: 0.014em;
+    margin: 20px auto;
+}
+
+
 .textCenter {
 	font-size: clamp(42px, 3.5vw , 64px);
 	font-weight: bold;
@@ -63,7 +80,7 @@ body.light-mode .about-footnote {
 
 
 /****************************** Sfondo ******************************/
-.top-bg {
+.night-mode .top-bg {
     position: relative;
     left: 0%;
     top: 0%;
