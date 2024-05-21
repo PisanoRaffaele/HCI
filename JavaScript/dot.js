@@ -1,6 +1,6 @@
 $(() => {
 	var score = 0;
-	var time = 2;
+	var time = 10;
 	var countdown;
 	var gameStarted = false;
 
