@@ -22,7 +22,7 @@ $(".toggle-password").click(function () {
 function NotValid() {
 	$('#username_email').addClass('error');
 	$('#username_email').next('small').addClass('error');
-	$('#username_email + small').text('Username o password non validi');
+	$('#username_email + small').text('Username or password not valid');
 	$("#password").addClass('error');
 	$("#password").next('small').addClass('error');
 }
@@ -44,9 +44,6 @@ $("#password").on('input', function () {
 	$("#password").next('small').addClass('error');
 });
 
-function dberror() {
-	console.log("Errore nel database");
-}
 
 // Funzione per impostare la modalità chiara
 function setLightMode() {
@@ -98,7 +95,10 @@ $('#login_form').submit(function (event) {
 			}
 		},
 		error: function (xhr, status, error) {
-			dberror();
+			$('#username_email').addClass('error');
+			$('#username_email').next('small').removeClass('available').addClass('error');
+			$('#username_email').next('small').text('We are sorry, the server is currently down. Try again later');
+			console.log("Errore: " + xhr.responseText);
 		}
 	});
 });

@@ -24,7 +24,7 @@ $("#rePassword").on({
 		if ($(this).val() && $(this).val() != firstPassword) {
 			$(this).addClass('error');
 			$(this).next('small').addClass('error');
-			$(this).next('small').text('Le password non coincidono');
+			$(this).next('small').text('Passwords do not match');
 		}
 	},
 	focus: function () {
@@ -47,7 +47,7 @@ $('#reset-pass-form').submit(function (event) {
     if (newPassword.length < 8) {
         $('#newPassword').addClass('error');
         $('#newPassword').next('small').addClass('error');
-        $('#newPassword').next('small').text('La password deve essere lunga almeno 8 caratteri');
+        $('#newPassword').next('small').text('The password must be at least 8 characters long');
         return false;
     }
 
@@ -55,14 +55,14 @@ $('#reset-pass-form').submit(function (event) {
     if (!passwordRegex.test(newPassword)) {
         $('#newPassword').addClass('error');
         $('#newPassword').next('small').addClass('error');
-        $('#newPassword').next('small').text('La password deve contenere almeno un carattere maiuscolo e un numero');
+        $('#newPassword').next('small').text('The password must contain at least one uppercase letter and one number');
         return false;
     }
 
     if (oldPassword === newPassword) {
         $('#newPassword').addClass('error');
         $('#newPassword').next('small').addClass('error');
-        $('#newPassword').next('small').text('La nuova password deve essere diversa dalla vecchia');
+        $('#newPassword').next('small').text('The new password must be different from the old one');
         return false;
     }
 
@@ -76,15 +76,15 @@ $('#reset-pass-form').submit(function (event) {
         success: function (data) {
             if (data.trim() === '0') {
                 $('.profile-button').next('small').removeClass('available').addClass('error');
-                $('.profile-button').next('small').text('Ci dispice, si è verificato un errore. Riprova più tardi');
+                $('.profile-button').next('small').text('We are sorry, the server is currently down. Try again later');
             }
             else if (data.trim() === '2') {
                 $('#oldPassword').next('small').removeClass('available').addClass('error');
-                $('#oldPassword').next('small').text('La vecchia password non è corretta');
+                $('#oldPassword').next('small').text('The old password is incorrect');
             }
             else {
                 $('.profile-button').next('small').removeClass('error').addClass('available');
-                $('.profile-button').next('small').text('Password cambiata');
+                $('.profile-button').next('small').text('Password changed successfully');
                 $('#oldPassword').removeClass('error');
                 $('#oldPassword').next('small').removeClass('error');
                 $('#oldPassword').next('small').text('');
@@ -102,7 +102,7 @@ $('#reset-pass-form').submit(function (event) {
         error: function (xhr, status, error) {
             console.log("Errore: " + xhr.responseText);
             $('.profile-button').next('small').removeClass('available').addClass('error');
-            $('.profile-button').next('small').text('Ci dispice, si è verificato un errore. Riprova più tardi');
+            $('.profile-button').next('small').text('We are sorry, the server is currently down. Try again later');
         }
     });
 });
