@@ -7,7 +7,7 @@ $(function () {
 	$('body').show();
 });
 
-// prende in localStorage i dati dell'utente e li mostra nella pagina profilo 
+// prende in localStorage i dati dell'utente e li mostra nella pagina profilo
 $(function () {
     var username = localStorage.getItem('username');
     var email = localStorage.getItem('email');
@@ -76,7 +76,7 @@ $('#reset-pass-form').submit(function (event) {
         success: function (data) {
             if (data.trim() === '0') {
                 $('.profile-button').next('small').removeClass('available').addClass('error');
-                $('.profile-button').next('small').text('Errore');
+                $('.profile-button').next('small').text('Ci dispice, si è verificato un errore. Riprova più tardi');
             }
             else if (data.trim() === '2') {
                 $('#oldPassword').next('small').removeClass('available').addClass('error');
@@ -100,8 +100,9 @@ $('#reset-pass-form').submit(function (event) {
             }
         },
         error: function (xhr, status, error) {
-            already_exist();
             console.log("Errore: " + xhr.responseText);
+            $('.profile-button').next('small').removeClass('available').addClass('error');
+            $('.profile-button').next('small').text('Ci dispice, si è verificato un errore. Riprova più tardi');
         }
     });
 });

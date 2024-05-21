@@ -6,6 +6,7 @@ $(function () {
         $("body").removeClass("night-mode").addClass("light-mode");
         localStorage.setItem('mode', 'light'); // Salva la modalità nella memoria locale
         changeVideoSource('assets/HomeVideo2.mp4'); // Cambia la sorgente del video
+        $('#imgFade').css('visibility', 'hidden');
     }
 
     // Funzione per cambiare la fonte del video
@@ -20,6 +21,7 @@ $(function () {
     function setNightMode() {
         $("body").removeClass("light-mode").addClass("night-mode");
         localStorage.setItem('mode', 'night'); // Salva la modalità nella memoria locale
+        $('#imgFade').css('visibility', 'visible');
     }
 
     // Imposta la modalità al caricamento della pagina
