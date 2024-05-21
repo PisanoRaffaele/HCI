@@ -3,8 +3,15 @@
     <div class="container" id = "container">
         <h1 class="textCenter">Settings</h1>
         <div class="setting">
-            <span class="descriptionAbout">Volume:</span>
-            <input type="range" min="0" max="100" value="50" class="slider" id="volume-slider" onchange="setVolume(this.value)">
+            <span class="descriptionAbout">Music:</span>
+            <div style="display: flex; justify-content: center; align-items: center; flex-direction: row">
+                <button style="display: flex" id="pauseButton">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <button style="display: flex" id="playButton">
+                    <i class="fas fa-play" ></i>
+                </button>
+            </div>
         </div>
 
         <div class="setting">

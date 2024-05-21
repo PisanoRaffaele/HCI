@@ -1,21 +1,7 @@
 // impostazioni.js
 
 // Funzione per impostare la lingua
-function setLanguage(language) {
-    if (language === "italiano") {
-        // Imposta la lingua italiana
-        document.documentElement.lang = "it";
-    } else if (language === "inglese") {
-        // Imposta la lingua inglese
-        document.documentElement.lang = "en";
-    }
-}
 
-// Funzione per impostare il volume
-function setVolume(volume) {
-    // Imposta il volume
-    // Ad esempio, potresti aggiornare un'interfaccia utente o fare altre azioni in base al volume selezionato
-}
 
 // Funzione per attivare/disattivare la modalità notturna
 function setLightMode() {
@@ -49,5 +35,7 @@ window.onload = function() {
         setLightMode();
     }
 }
+
+
 
 

@@ -78,6 +78,41 @@ td {
 	color: #D62976;
 }
 
+.settings {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: var(--blue-opaco);
+	padding: 10px;
+	border-radius: 10px;
+	z-index: 9999;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.settings button i {
+    font-size: 36px;
+    color: white;
+}
+
+.settings button i:hover {
+    color: #ffec37;
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.settings button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 10px;
+    text-decoration: none;
+    outline: none;
+}
+
 
 /******************** ALERT ************************/
 

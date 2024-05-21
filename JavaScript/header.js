@@ -1,7 +1,61 @@
-// applica stile css al menu hamburger e al menu dropdown quando si clicca sull'icona del menu
-// setta la variabile isLoggedIn a true se l'utente è loggato, altrimenti a false
-// aggiorna il testo e l'href del link al profilo se l'utente è loggato
+/******************** Bottom Header ********************/
+$('#playButton').click(function() {
+    var audio = document.getElementById("relaxing-music");
+    audio.loop = true;
+    audio.play();
+    $('#playButton').css('display', 'none');
+    $('#pauseButton').css('display', 'flex');
+    localStorage.setItem('audioState', 'playing');
+});
+
+$('#pauseButton').click(function() {
+    var audio = document.getElementById("relaxing-music");
+    audio.pause();
+    $('#pauseButton').css('display', 'none');
+    $('#playButton').css('display', 'flex');
+    localStorage.setItem('audioState', 'paused');
+});
+
+$('#dayButton').click(function() {
+    localStorage.setItem('mode', 'light');
+    document.body.classList.remove('night-mode');
+    document.body.classList.add('light-mode');
+    $('#dayButton').css('display', 'none');
+    $('#nightButton').css('display', 'flex');
+});
+
+$('#nightButton').click(function() {
+    localStorage.setItem('mode', 'night');
+    document.body.classList.remove('light-mode');
+    document.body.classList.add('night-mode');
+    $('#nightButton').css('display', 'none');
+    $('#dayButton').css('display', 'flex');
+});
+
+$('#upButton').click(function() {
+    $('#upButton').css('display', 'none');
+    $('#downButton').css('display', 'flex');
+});
+
+$('#downButton').click(function() {
+    $('#downButton').css('display', 'none');
+    $('#upButton').css('display', 'flex');
+});
+
+$('document').ready(function() {
+    $('#pauseButton').css('display', 'none');
+    $('#nightButton').css('display', 'none');
+    $('#downButton').css('display', 'none');
+});
+
+/******************* Top Header *******************/
+
 $(() => {
+
+    const button = document.querySelector('#nightButton');
+    button.click();
+    console.log('click');
+
     $('#hamburger').on('click', function () {
         $('.animated-togglebutton').toggleClass('open');
         $('.dropdown-nav-container').toggleClass('show');
@@ -55,6 +109,7 @@ $('.close-search').on('click', function () {
     $(".animated-togglebutton span").css('transition', '0.25s');
     $('.video-container').css('margin-top', '80');
 });
+
 
 // ottiene i giochi dal database e li aggiunge al search dropdown in base all'input dell'utente
 // crea dinamicamente gli elementi html per ogni gioco trovato e li aggiunge al search dropdown
