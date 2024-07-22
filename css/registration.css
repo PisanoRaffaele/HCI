@@ -221,3 +221,18 @@ h2 {
 		margin-bottom: 10px;
 	}
 }
+
+
+body.light-mode {
+    background-color: #90d4fc;
+    color: black;
+}
+
+body.light-mode main {
+    background-image: none; /* Rimuovi lo sfondo per il main */
+}
+
+
+body.light-mode .signup-content{
+	background-color: rgba(61, 61, 156, 0.7);
+}

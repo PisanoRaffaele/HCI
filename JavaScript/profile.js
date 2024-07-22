@@ -5,6 +5,7 @@ $(function () {
 		window.location.href = '?p=home';
 	}
 	$('body').show();
+    $('#profile1').hide();
 });
 
 // prende in localStorage i dati dell'utente e li mostra nella pagina profilo
@@ -107,6 +108,60 @@ $('#reset-pass-form').submit(function (event) {
     });
 });
 
+$('#change-username-form').submit(function (event) {
+    event.preventDefault();
+
+    var newUsername = $(this).find('#newUsername').val();
+    var currentPassword = $(this).find('#currentPassword').val();
+    var username = localStorage.getItem('username');
+    var email = localStorage.getItem('email');
+
+    if (newUsername === username) {
+        $('#newUsername').addClass('error');
+        $('#newUsername').next('small').addClass('error');
+        $('#newUsername').next('small').text('The new username must be different from the old one');
+        return false;
+    }
+
+    $.ajax({
+        type: $(this).attr('method'),
+        url: 'handle_db.php',
+        data: { newUsername: newUsername, currentPassword: currentPassword, email: email, username: username, funzione: 'reset_username' },
+        success: function (data) {
+            if (data.trim() === '0') {
+                $('.profile-button').next('small').removeClass('available').addClass('error');
+                $('.profile-button').next('small').text('We are sorry, the server is currently down. Try again later');
+            }
+            else if (data.trim() === '2') {
+                $('#currentPassword').next('small').removeClass('available').addClass('error');
+                $('#currentPassword').next('small').text('The password is incorrect');
+            }
+            else {
+                $('.profile-button').next('small').removeClass('error').addClass('available');
+                $('.profile-button').next('small').text('Username changed successfully');
+                $('#currentPassword').removeClass('error');
+                $('#currentPassword').next('small').removeClass('error');
+                $('#currentPassword').next('small').text('');
+                $('#currentPassword').val('');
+                $('#newUsername').removeClass('error');
+                $('#newUsername').next('small').removeClass('error');
+                $('#newUsername').next('small').text('');
+                $('#newUsername').val('');
+                localStorage.setItem('username', newUsername);
+                $('#user-profile').text(newUsername);
+
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log("Errore: " + xhr.responseText);
+            $('.profile-button').next('small').removeClass('available').addClass('error');
+            $('.profile-button').next('small').text('We are sorry, the server is currently down. Try again later');
+        }
+    });
+
+});
+
+
 // al click del bottone logout, rimuove i dati dell'utente dal localStorage e lo reindirizza alla pagina home
 $('#logout').click(function () {
     localStorage.setItem('isLoggedIn', null);
@@ -114,3 +169,18 @@ $('#logout').click(function () {
     localStorage.removeItem('email');
     window.location.href = '?p=home';
 });
+
+$('#change-password').click(function () {
+    $('#profile1').show();
+    $('#profile2').hide();
+    $('#cu-text').css('text-decoration', 'none');
+    $('#cp-text').css('text-decoration', 'underline');
+});
+
+$('#change-username').click(function () {
+    $('#profile1').hide();
+    $('#profile2').show();
+    $('#cu-text').css('text-decoration', 'underline');
+    $('#cp-text').css('text-decoration', 'none');
+});
+

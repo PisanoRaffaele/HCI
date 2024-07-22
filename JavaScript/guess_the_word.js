@@ -196,7 +196,7 @@ function aggiornaClassifica() {
 			data: { gioco: "GTW", order: "reverse", funzione: "aggiorna_classifica", punteggio: time, username: username, email: email },
 			success: function (data) {
 				var lines = data.split("\n");
-				if (lines[lines.length - 1] == -42) {
+				if (lines[0] == '-42\r') {
 					resolve(1);
 					return;
 				}

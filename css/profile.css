@@ -147,6 +147,15 @@ body.light-mode .profile-button {
     font-size: clamp(22px, 2.2vw, 26px);
 }
 
+#cu-text{
+    font-size: clamp(20px, 2.2vw, 26px);
+    text-decoration: underline;
+}
+
+#cp-text{
+    font-size: clamp(20px, 2.2vw, 26px);
+}
+
 #logout-text{
     font-size: clamp(20px, 2.2vw, 26px);
 }
@@ -158,6 +167,12 @@ body.light-mode .profile-button {
     margin-left: 8px !important;
 }
 
+.profile_c {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 @media screen and (max-width: 792px) {
     .textCenter {
@@ -170,5 +185,11 @@ body.light-mode .profile-button {
 
     #container {
         padding-top : 0px !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    img {
+        width: 140px;
     }
 }

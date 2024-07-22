@@ -18,6 +18,11 @@ footer {
 	background-color: var(--o);
 }
 
+footer.light-mode {
+	background-color: rgba(88,94,255, 0.7);
+    color: black;
+}
+
 p {
 	font-size: clamp(19px, 2vw, 24px) !important;
 	margin: 0 !important;

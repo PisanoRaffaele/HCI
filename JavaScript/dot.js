@@ -1,6 +1,6 @@
 $(() => {
 	var score = 0;
-	var time = 10;
+	var time = 1;
 	var countdown;
 	var gameStarted = false;
 
@@ -128,6 +128,7 @@ $(() => {
 
 	// aggiorna la classifica nel database
 	function aggiornaClassifica() {
+		console.log("aggiornaClassifica");
 		return new Promise((resolve) => {
 			var logged = localStorage.getItem('isLoggedIn');
 			if (logged == "null" || logged === "false"){
@@ -142,7 +143,7 @@ $(() => {
 				data: { gioco: "DOT", order: "notReverse", funzione: "aggiorna_classifica", punteggio: score, username: username, email: email },
 				success: function (data) {
 					var lines = data.split("\n");
-					if (lines[lines.length - 1] == -42) {
+					if (lines[0] == '-42\r') {
 						resolve(1);
 						return;
 					}

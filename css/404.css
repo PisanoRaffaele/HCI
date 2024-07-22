@@ -6,13 +6,27 @@
     --o: #1e0742;
 }
 
-.body-404 {
+.body {
     background-color: var(--blue-opaco);
     display: flex;
     margin-top: 50px;
     font-family: 'Press Start 2P';
     color: #FFFFFF;
     text-align: center;
+}
+
+.body.light-mode {
+    background-color: #90d4fc;
+    display: flex;
+    margin-top: 70px;
+    font-family: 'Press Start 2P';
+    color: #FFFFFF;
+    text-align: center;
+}
+
+body.light-mode {
+    background-color: #90d4fc;
+    color: black;
 }
 
 section.notFound {
@@ -45,6 +59,7 @@ section.notFound h1, h2, h3 {
 .comment-404 {
     font-size: clamp(10px, 3vw, 30px);
     margin-top: -40px;
+    color: #FFFFFF;
 }
 
 @media only screen and (max-width: 768px) {

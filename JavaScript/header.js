@@ -19,6 +19,8 @@ $('#pauseButton').click(function() {
 $('#dayButton').click(function() {
     document.body.classList.remove('night-mode');
     document.body.classList.add('light-mode');
+    $('footer').addClass('light-mode');
+    $('header').addClass('light-mode');
     $('#dayButton').addClass('no-show');
     $('#nightButton').removeClass('no-show');
     if (localStorage.getItem('mode') == 'night')
@@ -31,6 +33,8 @@ $('#dayButton').click(function() {
 $('#nightButton').click(function() {
     document.body.classList.remove('light-mode');
     document.body.classList.add('night-mode');
+    $('footer').removeClass('light-mode');
+    $('header').removeClass('light-mode');
     $('#nightButton').addClass('no-show');
     $('#dayButton').removeClass('no-show');
     if (localStorage.getItem('mode') == 'light')

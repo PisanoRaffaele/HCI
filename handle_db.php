@@ -135,7 +135,19 @@ function aggiorna_classifica($dbconn)
         }
     }
     else {
-        echo -42;
+        $query = "INSERT INTO Statistiche (email, username, gioco, punteggio)
+                VALUES ($1, $2, $3, $4)
+                ON CONFLICT (username, gioco) DO UPDATE SET
+                    email = EXCLUDED.email,
+                    punteggio = EXCLUDED.punteggio";
+
+        $result = pg_query_params($dbconn, $query, [$email, $username, $gioco, $punteggio]);
+
+        if ($result) {
+            echo 0;
+        } else {
+            echo -42;
+        }
     }
 }
 
@@ -166,6 +178,44 @@ function reset_password($dbconn)
     } else {
         echo 0;
     }
+}
+
+function reset_username($dbconn)
+{
+    $newUsername = $_POST["newUsername"];
+    $email = $_POST["email"];
+    $password = $_POST["currentPassword"];
+    $username = $_POST["username"];
+
+    $query = "SELECT * FROM Persona WHERE email = $1 AND username = $2";
+    $result = pg_query_params($dbconn, $query, [$email, $username]);
+
+    if (pg_num_rows($result) > 0) {
+        $row = pg_fetch_row($result);
+        $hash = $row[2];
+        if (password_verify($password, $hash)) {
+            $query = "UPDATE Persona SET username = $1 WHERE email = $2";
+            $result = pg_query_params($dbconn, $query, [$newUsername, $email]);
+            if ($result && pg_affected_rows($result) > 0)
+                echo 1;
+            else
+                echo 0;
+        } else {
+            echo 2;
+        }
+    } else {
+        echo 0;
+    }
+
+    // update also username in Statistiche
+
+    $query = "UPDATE Statistiche SET username = $1 WHERE email = $2";
+    $result = pg_query_params($dbconn, $query, [$newUsername, $email]);
+    if ($result && pg_affected_rows($result) > 0)
+        echo 1;
+    else
+        echo 0;
+
 }
 
 ?>

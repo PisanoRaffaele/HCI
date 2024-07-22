@@ -261,3 +261,7 @@ body.light-mode .form-submit {
     border-color: var(--yellow); /* Cambia il colore del bordo per il pulsante .form-submit */
     background-color: var(--yellow); /* Cambia il colore di sfondo per il pulsante .form-submit */
 }
+
+body.light-mode .signin-content{
+	background-color: rgba(61, 61, 156, 0.7);
+}

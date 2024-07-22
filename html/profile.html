@@ -13,6 +13,22 @@
                     <span> </span>
                 </div>
                 <div class="mb-3">
+                    <div class="border-top border-bottom d-flex align-items-center py-3 setting-side justify-content-center" id="change-username">
+                        <div class="px-1">
+                            <i class="fas fa-user" style="color: #000;"></i>
+                        </div>
+                        <div class="px-1" id="cu-text">
+                            Change Username
+                        </div>
+                    </div>
+                    <div class="border-top border-bottom d-flex align-items-center py-3 setting-side justify-content-center" id="change-password">
+                        <div class="px-1">
+                            <i class="fas fa-lock" style="color: #000;"></i>
+                        </div>
+                        <div class="px-1" id="cp-text">
+                            Change Password
+                        </div>
+                    </div>
                     <div class="border-top border-bottom d-flex align-items-center py-3 setting-side justify-content-center" id="logout">
                         <div class="px-1">
                             <i class="fas fa-sign-out-alt" style="color: #000;"></i>
@@ -24,9 +40,9 @@
                 </div>
             </div>
             <div class="col d-flex justify-content-center setting-container">
-                <div class="p-2 py-5">
+                <div class="profile_c p-2 py-5" id="profile1">
                     <div class="d-flex justify-content-center align-items-center mb-3">
-                        <h4 class="text-right">Reset Password</h4>
+                        <h4 class="text-right">Change Password</h4>
                     </div>
                     <form class="row mt-1 d-flex justify-content-center px-4" method="POST" id="reset-pass-form">
                         <div class="col-md-10">
@@ -42,6 +58,27 @@
                         <div class="col-md-10">
                             <label class="labels">Repeat Password</label>
                             <input type="password" class="form-control" placeholder="Repeat Password" value="" id="rePassword" required>
+                            <small class="text-availabilty"></small>
+                        </div>
+                        <div class="mt-5 text-center save-button px-2">
+                            <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                            <small class="text-availabilty"></small>
+                        </div>
+                    </form>
+                </div>
+                <div class="profile_c p-2 py-5" id="profile2">
+                    <div class="d-flex justify-content-center align-items-center mb-3">
+                        <h4 class="text-right">Change Username</h4>
+                    </div>
+                    <form class="row mt-1 d-flex justify-content-center px-4" method="POST" id="change-username-form">
+                        <div class="col-md-10">
+                            <label class="labels">New Username</label>
+                            <input type="" class="form-control" placeholder="Enter New Username" value="" id="newUsername" required>
+                            <small class="text-availabilty"></small>
+                        </div>
+                        <div class="col-md-10">
+                            <label class="labels">Password</label>
+                            <input type="password" class="form-control" placeholder="Enter Password to confirm" value="" id="currentPassword" required>
                             <small class="text-availabilty"></small>
                         </div>
                         <div class="mt-5 text-center save-button px-2">

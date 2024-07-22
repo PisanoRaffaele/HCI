@@ -16,10 +16,58 @@ body.light-mode .logo{
     background-color: rgba(88,94,255, 0.7);
 }
 
+body.light-mode .classifica{
+    background-color: rgba(88,94,255, 0.7);
+}
+
+body.light-mode .classifica .textSide{
+    color: #ffec37;
+    background-image: none;
+    -webkit-text-fill-color: initial;
+    -webkit-background-clip: initial;
+}
+
+body.light-mode .game-list .card{
+    color: #fff;
+    background-image: none;
+    -webkit-text-fill-color: initial;
+    -webkit-background-clip: initial;
+}
+
+body.light-mode .timer{
+    background-color: rgba(88,94,255, 0.7);
+}
+
+body.light-mode .timer .textSide{
+    color: #ffec37;
+    background-image: none;
+    -webkit-text-fill-color: initial;
+    -webkit-background-clip: initial;
+}
+
 body.light-mode .navbar{
     background-color: rgba(88,94,255, 0.7);
 }
 
+
+body.light-mode .game #griglia .grid-item{
+    background-color: #5bbaff;
+    box-shadow: -5px 5px 1px rgb(84, 84, 151);
+}
+
+body.light-mode .dropdown-search-container.show {
+    background-color: rgba(58, 58, 175, 0.9);
+    color: #fff !important;
+}
+
+body.light-mode .search-game-description
+{
+    color: #fff !important;
+}
+
+body.light-mode .settings{
+	background-color: rgba(61, 61, 156, 0.7);
+}
 /****************************** Navbar ******************************/
 
 .logo {
@@ -394,6 +442,18 @@ body.light-mode .navbar{
         height: var(--height-header) !important;
         background-color: var(--blue);
         padding-inline: 10px;
+    }
+
+    body.light-mode .logo{
+        background-color: transparent;
+    }
+
+    body.light-mode .navbar{
+        background-color: transparent;
+    }
+
+    header.light-mode {
+        background-color: rgba(88,94,255, 0.7);
     }
 
     #mynav {
