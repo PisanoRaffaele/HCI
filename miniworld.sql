@@ -1,111 +1,93 @@
-CREATE TABLE Persona (
-	email VARCHAR(255) NOT NULL,
-	username VARCHAR(255) NOT NULL,
-	password VARCHAR(255) NOT NULL,
-	PRIMARY KEY (email, username),
-	UNIQUE (email)
+-- Creazione tabella persona
+CREATE TABLE IF NOT EXISTS persona (
+    email VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    PRIMARY KEY (email, username),
+    UNIQUE (email)
 );
 
-CREATE TABLE Statistiche (
-	email VARCHAR(255) NOT NULL,
-	username VARCHAR(255) NOT NULL,
-	gioco VARCHAR(255) NOT NULL,
-	punteggio FLOAT NOT NULL,
-	PRIMARY KEY (username, gioco),
-	FOREIGN KEY (username, email) REFERENCES Persona (username, email)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE
+-- Creazione tabella statistiche
+CREATE TABLE IF NOT EXISTS statistiche (
+    email VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    gioco VARCHAR(255) NOT NULL,
+    punteggio DOUBLE PRECISION NOT NULL,
+    PRIMARY KEY (username, gioco),
+    FOREIGN KEY (email, username) REFERENCES persona (email, username) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE OR REPLACE FUNCTION update_func() RETURNS TRIGGER AS
-$$
-BEGIN
-	IF EXISTS (
-		SELECT *
-		FROM statistiche
-		WHERE gioco = NEW.gioco
-		AND username = NEW.username
-	) THEN
-		UPDATE statistiche
-		SET punteggio = NEW.punteggio
-		WHERE gioco = NEW.gioco
-		AND username = NEW.username;
-		RETURN NULL;
-	END IF;
-	RETURN NEW;
- END;
-$$ language plpgsql;
-
-CREATE OR REPLACE TRIGGER update_trigger
-BEFORE INSERT ON statistiche
-FOR EACH ROW EXECUTE PROCEDURE update_func();
-
-
-
--- Insert 15 records into the Persona table with dummy Italian data
-
-INSERT INTO Persona (email, username, password)
-VALUES
-('marco.rizzo@example.com', 'marcorizzo', 'password1'),
-('silvia.rossi@example.com', 'silviarossi', 'password2'),
-('mario.bianchi@example.com', 'mariobianchi', 'password3'),
-('francesca.verdi@example.com', 'francescaverdi', 'password4'),
-('andrea.neri@example.com', 'andreaneri', 'password5'),
-('elena.gallo@example.com', 'elenagallo', 'password6'),
-('luigi.romano@example.com', 'luigiromano', 'password7'),
-('giorgia.moretti@example.com', 'giorgiamoretti', 'password8'),
-('daniele.ferrari@example.com', 'danieleferrari', 'password9'),
+-- Inserimento dati nella tabella persona
+INSERT INTO persona (email, username, password) VALUES
 ('alessandra.russo@example.com', 'alessandrarusso', 'password10'),
-('matteo.costa@example.com', 'matteocosta', 'password11'),
-('simona.giordano@example.com', 'simonagiordano', 'password12'),
+('andrea.neri@example.com', 'andreaneri', 'password5'),
+('daniele.ferrari@example.com', 'danieleferrari', 'password9'),
+('e@e.com', 'e', '$2y$10$R9AbqTEzq/Jtt4DiDNP0gO9HURpwc2oGWNR3tFufBtbHJgbofbDVm'),
+('ef@fe.com', 'd', '$2y$10$VoF./prOc5WIc/tIeHKLAeELneq7cski0PR4Ni4GquSoXe7ABOkCK'),
+('elena.gallo@example.com', 'elenagallo', 'password6'),
 ('fabio.esposito@example.com', 'fabioesposito', 'password13'),
-('valentina.ricci@example.com', 'valentinaricci', 'password14'),
-('giovanni.franco@example.com', 'giovannifranco', 'password15');
+('francesca.verdi@example.com', 'francescaverdi', 'password4'),
+('giorgia.moretti@example.com', 'giorgiamoretti', 'password8'),
+('giovanni.franco@example.com', 'giovannifranco', 'password15'),
+('luigi.romano@example.com', 'luigiromano', 'password7'),
+('marco.rizzo@example.com', 'marcorizzo', 'password1'),
+('mario.bianchi@example.com', 'mariobianchi', 'password3'),
+('matteo.costa@example.com', 'matteocosta', 'password11'),
+('r@r.com', 'R', '$2y$10$LISivPFs4.b8Akl44WFMR.lriEU7bg1TxJ8zWamqLmg94n2/hscJu'),
+('sef@se.com', 'ef', '$2y$10$wWYI3YNPzNFi.h5gYFRLn.DOYvTMxFGR.LYjijK3Axk2zpawtBMre'),
+('silvia.rossi@example.com', 'silviarossi', 'password2'),
+('simona.giordano@example.com', 'simonagiordano', 'password12'),
+('valentina.ricci@example.com', 'valentinaricci', 'password14');
 
-
-
--- funzione per creare statistiche casuali per ogni utente (da eseguire dopo aver creato gli utenti) 
--- da eseguire con il comando SELECT create_statistics();
-
-CREATE OR REPLACE FUNCTION create_statistics() RETURNS VOID AS $$
-DECLARE 
-    email_var VARCHAR(255);
-    username_var VARCHAR(255);
-    i INT DEFAULT 0;
-    gioco VARCHAR(255);
-    punteggio FLOAT;
-    cur CURSOR FOR SELECT email, username FROM Persona;
-BEGIN
-    OPEN cur;
-
-    LOOP
-        FETCH cur INTO email_var, username_var;
-        EXIT WHEN email_var IS NULL;
-
-        i := 1;
-        WHILE (i <= 4) LOOP
-            CASE i 
-                WHEN 1 THEN 
-					gioco := 'SIMON';
-					punteggio := ROUND(RANDOM() * 100);
-                WHEN 2 THEN 
-					gioco := 'DOT';
-					punteggio := ROUND(RANDOM() * 100);
-				WHEN 3 THEN 
-					gioco := 'MEMORY';
-					punteggio := CAST((RANDOM() * 100) AS NUMERIC(5, 2));
-                ELSE 
-					gioco := 'GTW';
-					punteggio := CAST((RANDOM() * 100) AS NUMERIC(5, 2));
-            END CASE;
-
-            INSERT INTO Statistiche (email, username, gioco, punteggio)
-            VALUES (email_var, username_var, gioco, punteggio);
-
-            i := i + 1;
-        END LOOP;
-    END LOOP;
-
-    CLOSE cur;
-END;
-$$ LANGUAGE plpgsql;
+-- Inserimento dati nella tabella statistiche
+INSERT INTO statistiche (email, username, gioco, punteggio) VALUES
+('alessandra.russo@example.com', 'alessandrarusso', 'DOT', 3),
+('alessandra.russo@example.com', 'alessandrarusso', 'GTW', 720),
+('alessandra.russo@example.com', 'alessandrarusso', 'MEMORY', 880),
+('andrea.neri@example.com', 'andreaneri', 'GTW', 760),
+('andrea.neri@example.com', 'andreaneri', 'MEMORY', 950),
+('andrea.neri@example.com', 'andreaneri', 'SIMON', 8),
+('daniele.ferrari@example.com', 'danieleferrari', 'DOT', 1),
+('daniele.ferrari@example.com', 'danieleferrari', 'GTW', 790),
+('daniele.ferrari@example.com', 'danieleferrari', 'MEMORY', 920),
+('e@e.com', 'e', 'DOT', 8),
+('e@e.com', 'e', 'GTW', 9.1),
+('e@e.com', 'e', 'MEMORY', 20.5),
+('e@e.com', 'e', 'SIMON', 3),
+('elena.gallo@example.com', 'elenagallo', 'GTW', 710),
+('elena.gallo@example.com', 'elenagallo', 'MEMORY', 820),
+('elena.gallo@example.com', 'elenagallo', 'SIMON', 1),
+('fabio.esposito@example.com', 'fabioesposito', 'DOT', 33),
+('fabio.esposito@example.com', 'fabioesposito', 'GTW', 800),
+('fabio.esposito@example.com', 'fabioesposito', 'MEMORY', 910),
+('francesca.verdi@example.com', 'francescaverdi', 'GTW', 730),
+('francesca.verdi@example.com', 'francescaverdi', 'MEMORY', 750),
+('francesca.verdi@example.com', 'francescaverdi', 'SIMON', 12),
+('giorgia.moretti@example.com', 'giorgiamoretti', 'GTW', 770),
+('giorgia.moretti@example.com', 'giorgiamoretti', 'MEMORY', 875),
+('giorgia.moretti@example.com', 'giorgiamoretti', 'SIMON', 6),
+('giovanni.franco@example.com', 'giovannifranco', 'DOT', 4),
+('giovanni.franco@example.com', 'giovannifranco', 'MEMORY', 870),
+('luigi.romano@example.com', 'luigiromano', 'GTW', 740),
+('luigi.romano@example.com', 'luigiromano', 'MEMORY', 830),
+('luigi.romano@example.com', 'luigiromano', 'SIMON', 4),
+('marco.rizzo@example.com', 'marcorizzo', 'GTW', 14),
+('marco.rizzo@example.com', 'marcorizzo', 'MEMORY', 44.5),
+('marco.rizzo@example.com', 'marcorizzo', 'SIMON', 5),
+('mario.bianchi@example.com', 'mariobianchi', 'GTW', 44),
+('mario.bianchi@example.com', 'mariobianchi', 'MEMORY', 900),
+('mario.bianchi@example.com', 'mariobianchi', 'SIMON', 4),
+('matteo.costa@example.com', 'matteocosta', 'DOT', 13),
+('matteo.costa@example.com', 'matteocosta', 'GTW', 770),
+('matteo.costa@example.com', 'matteocosta', 'MEMORY', 890),
+('r@r.com', 'R', 'DOT', 7),
+('r@r.com', 'R', 'SIMON', 3),
+('silvia.rossi@example.com', 'silviarossi', 'GTW', 69.1),
+('silvia.rossi@example.com', 'silviarossi', 'MEMORY', 60),
+('silvia.rossi@example.com', 'silviarossi', 'SIMON', 6),
+('simona.giordano@example.com', 'simonagiordano', 'DOT', 6),
+('simona.giordano@example.com', 'simonagiordano', 'GTW', 760),
+('simona.giordano@example.com', 'simonagiordano', 'MEMORY', 845),
+('valentina.ricci@example.com', 'valentinaricci', 'DOT', 8),
+('valentina.ricci@example.com', 'valentinaricci', 'GTW', 28),
+('valentina.ricci@example.com', 'valentinaricci', 'MEMORY', 860);
