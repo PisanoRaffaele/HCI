@@ -2,7 +2,7 @@
 
 This project, developed for a university course in **Human-Computer Interaction**, focuses on creating a **user-friendly website** by applying key HCI principles. The goal is to design a **seamless, intuitive, and accessible** user experience (UX) that works flawlessly across all devices and platforms.
 
-<img width="977" height="441" alt="image" src="https://github.com/user-attachments/assets/94df2cc8-a19b-4210-8128-aaadb79c0a9f" />
+<img width="969" height="441" alt="image" src="https://github.com/user-attachments/assets/c0b22e95-0d27-4248-813f-65d944146a5b" />
 
 ---
 
